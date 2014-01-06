@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="./style/main.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='./scripts/styles/shCore.css' rel='stylesheet' type='text/css' />
+    <link href='./scripts/styles/shThemeDefault.css' rel='stylesheet' type='text/css' />
+    <script src='./scripts/scripts/XRegExp.js' type='text/javascript'></script>
+    <script src='./scripts/scripts/shCore.js' type='text/javascript'></script>
+    <script src='./scripts/scripts/shAutoloader.js' type='text/javascript'></script>
+    <script src='./scripts/scripts/shBrushAS3.js' type='text/javascript'></script>
+    <script src='/scripts/scripts/scripts/main.js' type='text/javascript'></script>
+    <title>GEOG 461W Lab 0 - The Basic Web Page</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="logo"><img src="style/logo.jpg" alt="GEOG 461w Logo"/></div>
+        <div id="instructors">
+            <strong>TA:</strong> Ryan Mullins | <a href="mailto:RyanMullins@psu.edu">RyanMullins@psu.edu</a><br />
+        </div>
+        <div id="main">
+        <div id="main_top"></div>
+
+        <h1>Lab 0: Introduction to Development Tools, Frameworks, and Services</h1>
+
+        <div class="section" id="overview"><h1>Overview</h1></div>
+
+        This lab is designed to introduce you to the core technologies you will be using throughout the course to create dynamic web maps. First you will activate your PSU personal web space, then we will go over the components of a web application, and finally discuss the core languages and technologies used on the web. This lab is intended to be an overview of the components we will be using and has only one deliverable, outlined in <a href="#section4">Section 4</a>.
+
+        <div class="section" id="section1"><h1>1 Activating Your Web Space</h1></div>
+
+        <p>
+            The Pennsylvania State University provides students, faculty, and staff with their own personal web space, hosted on the PASS server. This space will will be the primary location where you will host and present your maps throughout the course. Below are the necessary steps to activate your personal web space. If you have already activated your account, which is likely if you have already taken English 202, then you can skip these steps.
+        </p>
+        <ul>
+            <li>
+                Click this following link to <a href="https://www.work.psu.edu/webspace/">Apply for Web Space on www.personal.psu.edu</a>, and take the user quiz. This quiz is NOT graded. The university uses this quiz as a way to ensure you understand the Penn State terms of use and Use and Licensing Agreements (ULA).
+            </li>
+            <li>
+                Once you have completed the quiz you will have access to the Penn State Web Server, and your web space. Your web page will be the Penn State Personal Web Server address with your Penn State ID at the end. Please verify that your space has been activated by going to that address, you should see something similar to Figure 1. Example:  http://www.personal.psu.edu/abc1234
+            </li>
+        </ul>
+        <img src="images/example_activation.png" width="800" height="615" /><br />
+        <span class="caption"><strong>Figure 2</strong>: The CloudMade Individual Map Tile Editor.</span>
+        <p>
+            Files shown on your web space are stored in the "www" folder in your PASS space. Adding a folder or file to the "www" folder will make it publicly accessible and will be the primary way you share your maps in this class. When you're not logged into a PSU computer, you can access this space via the <a href="https://explorer.pass.psu.edu/">PASS Explorer</a>. 
+        </p>
+        <p>
+            The university also supplies a series of tutorials on <a href="http://eportfolio.psu.edu/">creating an ePortfolio</a>. If you are interested, this would be a good way to create a personal online presence for employers to look at the work you've done during school.
+        </p>
+
+        <div class="section" id="section2"><h1>2 Components of the Web</h1></div>
+
+        In this section I provide a cursory overview of the basic components involved in storing, accessing, and viewing a web page. While this is all very important information, this will not be graded in any way. 
+
+        <h2>2.1 Browser</h2>
+
+        The browser is the part you are all familiar with. Browsers are clients that allow a user to navigate to a page, which is then loaded for the user to view and interact with. Common browsers include Mozilla's Firefox, Google Chrome, Apple's Safari, and Microsoft's Internet Explorer. A quick note on Internet Explorer. Please do not use this browser, it does not follow the standards set forth by the World Wide Web Consortium and creates a lot of problems for web developers. 
+
+        <h2>2.2 Server</h2>
+
+        The server is a piece of hardware that receives and responds to requests from a client. Servers are capable of storing, processing, and transmitting data, commonly referred to as resources. They also act as the backbone for web applications, like the ones you will be developing in class. It is possible, and can be fairly simple, to set up your own private server on your personal computer, a standard practice for most web developers. Luckily, Penn State offers students access to a free, enterprise grade server, which you set up access to in Section 1, so you will be using that for this course. 
+
+        <h2>2.3 Connection</h2>
+
+        In order for a client and server to communicate, the system must establish a connection between them. There are several types of connections available, but the most common is the Hypertext Transfer Protocol, which you may are probably more familiar seeing written as HTTP. This protocol defines the way in which a client and server talk to each other and also serves as the basis for building web applications. 
+
+        HTTP is built upon the idea that a client will request information from a server, and that the server will then respond with the requested information. Requests and responses make use of a request or status line, headers, and an optional message body to communicate what type of information they are seeking or sending. 
+
+        <h3>HTTP Requests</h3>
+
+        <p>
+            HTTP requests contain three basic components, a request line, headers, and an optional message body. The request line tells the server what to do after receiving the request. A request line consists of a method, a resource address, and a protocol. The method portion tells the server how to perform the request. There are nine (9) methods, collectively referenced as verbs, defined in HTTP/1.1, the four (4) most common are listed and described below.
+        </p>
+
+        <ul>
+            <li>GET &ndash; Asks the server to simply return the data for the resource at the specified address. This is by far the most commonly used method.</li>
+            <li>POST &ndash; Asks the server to use the data supplied in the request message body to alter or otherwise affect the data at the resource address, and to possibly return information to the client. POST requests are often made to: (1) change the attributes of an existing resource on a server; (2) add new data to the server; and (3) hide the parameters used in a request. This is the next-most commonly used request method.</li>
+            <li>PUT &ndash; Asks the server to store the information contained in the request message body on the server at the specified address.</li>
+            <li>DELETE &ndash; Asks the server to delete the information at the specified address.</li>
+        </ul>
+
+        <p>
+            The resource address is the location of that resource on the server. Servers, at their core, are simply computers that provide access to an underlying file system. Therefore, the simplest resource address is just the path to where that file is stored on the system. In more advanced applications and services, the resource address is the path to the function that will find a resource for you, adding a layer of securely and obfuscation to your application.
+        </p>
+
+        <p>
+            The protocol defines the type of communication being used. By far the most common is HTTP/1.1, though some others are used in various circumstances (i.e. a legacy system using HTTP/1.0).
+        </p>
+
+        <p>
+            Following the request line is a series of headers. Only one header is required; Host specifies the name of the server to connect to. Other commonly used headers include Accept, Cache-Control, Cookie, Content-Type, Content-Length, Origin, and User-Agent. Specifying headers beyond the Host can allow the server to more quickly, accurately, and safely process a request. 
+        </p>
+
+        <p>
+            The final piece is the message body. While this piece is not required for all methods, it is used to contain the information being sent to the server for methods like POST and PUT. 
+        </p>
+
+        <h3>HTTP Responses</h3>
+
+        <p>
+            HTTP responses are very similar to HTTP requests, though not exactly the same. The chief difference between them is the use of a Status Line in place of a Request Line, and the types of headers used in the response. 
+        </p>
+
+        <p>
+            The status line is the first line of a response and contains three pieces of information, the protocol, a status code, and a short textual description of the status code. The protocol is the same as the protocol of the request. Status codes are defined as a series of three digit numbers ranging from 100 to 599, and are associated with predefined textual descriptions. Below are the general categories and some examples of commonly encountered codes in these categories. 
+        </p>
+
+        <ul>
+            <li>
+                1xx Informational &ndash; These codes are provisional responses to HTTP/1.1 requests and are not frequently encountered. They cannot be used in the response to and HTTP/1.0 request. 
+            </li>
+            <li>
+                2xx Success &ndash; These codes indicate that the request was successfully executed. The most common of these statuses is 200 OK, it is used with GET and POST requests and indicates that the request was executed and that the message body contains the results of this request.
+            </li>
+            <li>
+                3xx Redirect &ndash; These codes indicate that you are being redirected from the requested resource to another location and that the client must take additional action to complete the request. The most commonly encountered is 302 Found, which indicates that the resource was found permanently at a different location (acting as a 303), or was found at a new temporary location (acting as a 307). 
+            </li>
+            <li>
+                4xx Client Error &ndash; These status codes indicate that there was an error in the message sent by the client to the server. The most common are 404 Not Found, meaning the requested resource does not exist, and 403 Forbidden, meaning the client does not have permission to access this resource. 
+            </li>
+            <li>
+                5xx Server Error &ndash; These status codes indicate that an error occurred on the server when it tried to process the request. The most common are 500 Internal Server Error, meaning the server failed in some way, 502 Bad Gateway, meaning the server could not grant access to the upstream service it was providing access to, and 503 Service Unavailable, meaning the server cannot be accessed because it is overloaded or down for maintenance. 
+            </li>
+        </ul>
+
+        <p>
+            The headers used in a response also differ from those used in a request. By far the most commonly used are Content-Type and Content-Encoding, giving information about the data included in the response. Others, like Link and Set-Cookie, are used by some responses to to define how the client should handle the response and change its state. Web services use the Access-Control-Allow-Origin header to define the external domains that are allowed to access the content on the service. 
+        </p>
+
+        <p>
+            The message body of the response is technically no different than that of a request. Though in practice the body contains data that is processed by the client and displayed as content to the user, instead of providing further information to the server. 
+        </p>
+
+        <div class="section" id="section3"><h1>3 Markup, Scripts, Styles</h1></div>
+
+        Client-side web development &mdash; making the pages you actually see in your browser &mdash; is built primarily of three pieces: (1) a markup syntax for structuring content, (2) a scripting language for handling data and interactions, and (3) style information for displaying content in a visually appealing way. 
+
+        <h2>3.1 HTML</h2>
+        
+        <p>
+            This section describes the basic structure of HTML content 
+        </p> 
+
+        <h3>Foundations and HTML 5</h3>
+
+        <p>
+            HTML is a "markup" syntax for creating web pages. This syntax is based on the Extensible Markup Language (XML) using tags and attributes to define the type and display characteristics of content. There are three current versions of HTML &mdash; HTML 4.01, XHTML, and HTML 5. At this time, HTML 4 and XHTML are the fully ratified standards supported by all major browsers and the World Wide Web Consortium. HTML 5 is the next generation of the HTML standard, offering many advancements in graphical performance and structures, though it is not designed to replace XHTML. In Geog 461W you will be using the HTML 5 standard for your projects and labs. 
+        </p>
+
+        <h3>Tags</h3>
+
+        <p>
+            Content is typified in HTML by encapsulating it in a "tag". The general form a of a tag is shown in Listing 1. 
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+&lt;<em>tagName</em>&gt;<em>Some Content</em>&lt;/<em>tagName</em>&gt;
+            </pre>
+            <span class="caption">
+                <strong>Listing 1</strong>: The generic HTML tag.
+            </span>
+        </div>
+        <p>
+            As you can see, a tag consists of two structure that bound content, the former being the opening tag and the latter being the closing tags. The opening tag &mdash; which begins with a left angle bracket (&lt;), followed immediately by the tag's name, and possibly some attributes, before a right angle bracket (&gt;) &mdash; tells the browser (or some other structure) that everything that follows this tag, and before the closing tag, is of the content type associated with that tag. The closing tag &mdash; which begins with a left angle bracket (&lt;), followed immediately by a forward slash (/), the tag's name, and a right angle bracket (&gt;) &mdash; signals the end of the content of that type. 
+        </p>
+        <p>
+            The content of a tag can either be text, another tag, or both. This allows you do define content type within another content type. A common example of this would be wrapping several content elements in a div element, then styling that div to give the content a special background color and border.
+        </p>
+        <p>
+            Some very quick notes on style. Tag names are case insensitive, but you should be consistent in how you define them as it will make for easier to read documents. When starting a tag the content with the tag (also know as the text)
+        </p>
+        <p>
+            Below is a list of commonly used tags.
+        </p>
+        <ul>
+            <li>html - The tag used to start an HTML document.</li>
+            <li>head - Content related to the page but not shown to the user</li>
+            <li>body - Content that is shown to the user</li>
+            <li>div - A generic container for content, probably the most used tag in HTML</li>
+            <li>h1 - Top level header</li>
+            <li>h2 - Second level header</li>
+            <li>h3 - Third level header</li>
+            <li>p - A paragraph</li>
+            <li>a - A link (this one still doesn't make logical sense to me)</li>
+            <li>script - JavaScript code that is run on or available to the page</li>
+            <li>link - A link to an external reference, like a style sheet</li>
+            <li>strong - A tag to make a certain portion of text bold faced</li>
+            <li>em - A tag to make certain portions of text italicized</li>
+        </ul>
+
+        <h3>Attributes</h3>
+
+        <p>
+            The final piece to an HTML tag are the attributes, shown in Listing 2. Attributes allow you to define further information about a tag. The two most commonly used attributes and 'id' and 'class'. The 'id' attribute gives the unique identifier for a tag so that you can reference that element in other places on the page. The 'class' attribute defines a category of elements that have similar styling. Any element can belong to multiple classes.
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+&lt;<em>tagName</em> <em>attributeName</em>="<em>something</em>"&gt;<em>Some Content</em>&lt;/<em>tagName</em>&gt;
+            </pre>
+            <span class="caption">
+                <strong>Listing 2</strong>: The generic HTML tag with an attribute.
+            </span>
+        </div>
+
+        <h2>3.2 JavaScript</h2>
+
+        JavaScript is the standard scripting language used by web browsers. This will be the primary language in which you write code fro this course. This sections describes the JavaScript data types, the use of variables, and the concept of JavaScript libraries.
+
+        <h3>Data Types</h3>
+
+        <p>
+            <strong><em>Objects</em></strong> The most basic type of data in JavaScript is the object. All other data types are built from the Object data type. The basic syntax of a JavaScript object and for accessing the members of an object are described in Listing 3.A.
+        </p>
+        <p>
+             Objects are containers that can hold more data within them. The data stored within an object, commonly called a property or member, can be referenced by name. In Listing 3.A you'll 
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+{
+    '<em>memberName</em>' : <em>memberObject</em>,
+    '<em>member2Name</em>' : <em>member2Object</em>
+}
+
+object.memberName
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.A</strong>: The JavaScript Object syntax.
+            </span>
+        </div>
+        <p>
+            <strong><em>Strings</em></strong> A string is a collection of characters and numbers for expressing textual data. Strings can be double quoted or single quoted, shown in Listing 3.B, and have special properties like the ability to find their own length and do equality comparisons. 
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+'single quoted string'
+"double quoted string"
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.B</strong>: The JavaScript String data type.
+            </span>
+        </div>
+        <p>
+            <strong><em>Numbers</em></strong> A number is just that, a number. Number can be expressed is a variety of ways, but most times either an integer (whole number) or a floating point (number with decimal) are sufficient. Listing 3.C gives an example of both.
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+321         // An integer
+54321.0004  // A floating point
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.C</strong>: The JavaScript Number data type.
+            </span>
+        </div>
+        <p>
+            <strong><em>Booleans</em></strong> A boolean is a true/false value. These are commonly used to tell a program if a condition is met, a property is enabled, or something for comparison. 
+        </p>
+        <p>
+            <strong><em>Functions</em></strong> A function is the basic unit of work for code. A function is contains statements that are executed in order to accomplish a task. The basics of a function are described in Listing 3.D. 
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+function <em>optionalFunctionName</em>(<em>optional, comma, separated, parameters</em>) {
+    <em>the function body</em>
+}
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.D</strong>: The JavaScript Function data type.
+            </span>
+        </div>
+        <p>
+            <strong><em>Arrays</em></strong> Arrays are another generic container for data, which stored its members in a ordered list. Any type of data can be stored in an array then accessed via the index number. Listing 3.E details a standard array structure. 
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+[<em>element1</em>, <em>element2</em>, <em>element3</em>, ...]
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.E</strong>: The JavaScript Array data type.
+            </span>
+        </div>
+
+        <h3>Variables</h3>
+
+        <p>
+            Variables are how we reference data in JavaScript. Variables are named entities that reference a specific memory address in the computer, at that memory address is the data that the variable represents. Variables are created using the 'var' keyword. Once you create a variable you can assign it data to reference, and then change that reference later on. You can even make on variable reference another variable. You assign the value of a variable using the assignment operator, '='. Listing 3.F gives some examples of how to work with variables. 
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+// Basic syntax
+
+var aNumber;        // This creates a variable called 'aNumber'
+aNumber = 1.2345;   // This assigns the value 1.2345 to the variable 'aNumber'
+
+// Creating and assigning a value to a variable at the same time
+
+var aFunction = function (number) {
+    console.log(number);
+};
+
+// Assigning a variable to reference another variable
+
+var aVariable = aNumber;
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.F</strong>: Working with variables in JavaScript.
+            </span>
+        </div>
+
+        <h3>Operators</h3>
+
+        <p>
+            Operators are like a shorthand for predefined functions that allow you to do things like test equality, do simple arithmetic, and test for logical conditions. Operators are what allow us to define functions that actually do something with the data. Operators can take either one or two operands. The basic syntax for operators is shown in Listing 3.G. 
+        </p>
+        <p>
+            <strong><em>Assignment</em></strong> Assignment operators allow you to set the value of a variable. They can also be used as a shortcut to perform arithmetic operations on an existing variable. Some examples are shown in Listing 3.G
+        </p>
+        <p>
+            <strong><em>Comparison</em></strong> Comparison operators allow you to compare one variable with another, or one variable with a constant value, or a constant value with another (though this is not a good use of them), returning a boolean value as the result. Comparison operators are most commonly used in conditional statements. Listing 3.G details all possible comparison operators.  
+        </p>
+        <p>
+            <strong><em>Logical</em></strong> Logical operators allow you to compare two boolean expressions, returning a boolean value as the result. Expression can have either an AND, OR, or NOT relationship. A logical AND means that both operands are true. A logical OR means that one of the two operands are true. A logical NOT operator means that opposite the boolean value of an operand is returned. Listing 3.G shows how logical operators are used, and how to chain logical operations together. 
+        </p>
+        <p>
+            <strong><em>Special</em></strong> There are a series of special operators in JavaScript that do not fit any other categorization. Of these you will commonly see three, the '?' operator, the 'typeof' operator, and the 'instanceof' operator. The '?', sometimes called the conditional, operator tests a boolean relationship and returns one of two values depending on the result. The 'typeof' operator returns the type of the data referenced by the operand. The 'instanceof' operator returns the boolean result of comparing the types of operands. Listing 3.G gives some examples of these operators.
+        </p>
+        <div class="code">
+            <pre class="brush: js; toolbar: false;">
+// ---- Basic Syntax ----
+
+operator operand
+
+operand 1 operator operand 2
+
+// ---- Assignment ----
+
+var aNum;       // Creating a variable, 'aNum'
+aNum  = 1;      // Assigning 'aNum' a value, aNum = 1
+aNum += 2;      // Assigning 'aNum' the result of aNum + 2, aNum = 3
+aNum -= 4;      // Assigning 'aNum' the result of aNum - 4, aNum = -1
+aNum *= -2;     // Assigning 'aNum' the result of aNum * -1, aNum = 2
+aNum /= 4;      // Assigning 'aNum' the result of aNum / 4, aNum = 0.5
+
+// ---- Comparison ----
+
+var aNum = 7
+var obj = { 'val':7, 'name':'Ted'}
+
+aNum == obj.val    // Equality, DO NOT USE , true if values of operands are the same after type conversion
+aNum != obj.val    // Inequality, DO NOT USE, true if values of operands are not the same after type conversion
+aNum === obj.val   // Equality, true if values of operands are the same without type conversion
+aNum !== obj.val   // Inequality, true if values of operands are not the same without type conversion
+aNum &gt;= obj.val    // Greater than or equal to, true if operand 1 &gt;= operand 2
+aNum &gt; obj.val     // Greater, true if operand 1 &gt; operand 2
+aNum &lt; obj.val     // Less, true if operand 1 &lt; operand 2
+aNum &lt;= obj.val    // Less than or equal to, true if operand 1 &lt;= operand 2
+
+// ---- Logical ----
+
+true &amp;&amp; true            // AND, returns true
+true &amp;&amp; false           // AND, returns false
+false &amp;&amp; true           // AND, returns false
+false &amp;&amp; false          // AND, returns false
+
+true || true            // OR, returns true
+true || false           // OR, returns true
+false || true           // OR, returns true
+false || false          // OR, returns false
+
+!true                   // NOT, returns false
+!false                  // NOT, returns true
+
+(true &amp;&amp; false) || true // Chaining, returns true
+true || (false || true) // Chaining, returns true
+
+// ---- Special ----
+
+var aNum = 1.234;
+var aStr = 'hello';
+
+(aNum > 1) ? 'yes' : 'no'           // returns 'yes'
+(aStr === 'Hello') ? 'yes' : 'no'   // returns 'no'
+
+typeof aNum                         // returns 'Number'
+typeof aStr                         // returns 'String'
+
+aNum instanceof Number              // returns true
+aNum instanceof String              // returns false
+aStr instanceof Number              // returns true
+aStr instanceof String              // returns false
+aNum instanceof aStr                // returns false
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.G</strong>: Operators in JavaScript
+            </span>
+        </div>
+
+        <h3>Libraries</h3>
+
+        <p>
+            There is more and more software being written every day, and many times two applications need to make use of the same function. Rather than rewriting these functions every time they need to be used, you can package them up into a file, which is then loaded into another application for them to use. These packages are commonly referred to as libraries. You will be using several libraries in the following labs, more information on the specific libraries you will be using later.
+        </p>
+
+        <h2>3.3 Cascading Style Sheets</h2>
+
+        <p>
+            Cascading style sheets, or CSS, is a format for encoding style and formatting information for web pages. CSS allows you to define nearly every visual attribute of a web page. Style definitions can be made on elements of a given type, class, or ID. Type definitions are made by naming the HTML element type that is to be affected. Using CSS classes, specified in CSS files using the syntax '.<em>className</em>', you can set the style of HTML elements with the class attribute containing a specific class name. Using HTML unique IDs, specified in CSS files using the '#<em>ID</em>' syntax, you can set the style for a single HTML element. Definitions can also be chained so that elements of a certain type look one way, while elements of that same type with a given class look another. See Listing 3.H for some examples. 
+        </p>
+        <div class="code">
+            <pre class="brush: css; toolbar: false;">
+/* ---- Defining the Style of DIV elements ---- */
+
+div {
+    'padding': 15px;
+    'text-align': left;
+    'font-family': Helvetica;
+}
+
+/* ---- Defining the Style of elements with a Class ---- */
+
+.right {
+    'text-align': right;
+    'font-family': Times;
+}
+
+/* ---- Defining the Style of a unique element ---- */
+
+#legend {
+    'padding': 25px;
+    'text-align': center;
+}
+
+/* ---- Chaining the Style Definition for a DIV with a Class ---- */
+
+div .center {
+    'text-align': center;
+}
+            </pre>
+            <span class="caption">
+                <strong>Listing 3.H</strong>: CSS Examples
+            </span>
+        </div>
+        <p>
+            CSS is a hierarchical structure, such that elements nested inside other elements inherit the style of their parents. This functionality, unfortunately, is a double-edged sword. The large majority of the time it allows you to define power, simple, and flexible styles that scale across platforms and devices. However, it can also be the most infuriating piece of the design process. Be prepared for many hours spent tweaking and refining CSS to get the exact look and feel you are going after. 
+        </p>
+
+        <div class="section" id="section4"><h1>4 Tools, Libraries, Services</h1></div>
+
+        <p>
+            Creating software is an intricate and laborious process, requiring careful thought and planning. To ease the load on themselves, programmers have developed tools, frameworks, and services that take care of some of the heavy lifting required in developing an application. 
+        </p>
+
+        <h2>Tools</h2>
+
+        <p>
+            Software development is a process that relies on and creates many tools, in fact everything in this section can really be thought of as a tool. For now, let us focus on the tools that you can use to create, test, and debug original content. We will start by discussing the tools used to create content. 
+        </p>
+        <p>
+            As discussed in Section 3, web development on the client side is the creation of pages using a combination of HTML, JavaScript, and CSS. Luckily, you can easily create web pages using these three technologies with just a text editor. Text editors can be simple or complex. All modern computers come with a simple text editor installed &mdash; Notepad on Windows, TextEdit on OS X, and (typically) gEdit on Linux. While these editors provide basic functionality like spell checking and character encoding support, they often lack more advanced features like syntax highlighting, auto-complete, tabbed/project view support, or plug-in infrastructure (gEdit is one exception to this rule). To address this, developers have created a number of advanced text editors. Using one of these can greatly decrease the time it takes you to write or debug problems in your code. Personally, I use and recommend <a href="http://www.sublimetext.com/2">Sublime Text</a>. Sublime Text is a very powerful, free-to-try text editor that includes project-centric views, syntax highlighting, color themes, and a rich plug-in ecosystem that extends it to cover most anything that it doesn't cover out of the box. It is strongly recommended that you download SublimeText 2 and use it as you progress through these labs.
+        </p>
+        <p>
+            The next most important development tool is a test environment. The last thing you want to do is publish a project to the web for people to see and have it not work properly. So you test your project before you publish it. The simplest way to test a project is to simply open the HTML document you have stored locally on your computer in a web browser. This works for many testing scenarios &mdash; layouts, static content, etc. &mdash; but does not work as well when you try to load data from an external source. When you test a project that loads data from an external source, even if that source is just a different directory on your machine, you need to use a proper web server. The simplest test server available is the <a href="http://www.wampserver.com/en/">WAMP</a>/<a href="http://www.mamp.info/en/index.html">MAMP</a>/<a href="http://en.wikipedia.org/wiki/LAMP_(software_bundle)">LAMP</a> series. These products package the Apache httpd web server, a MySQL database, and a PHP infrastructure to create web applications on Windows, OS X, and Linux systems respectively. These labs do not rely on this more advanced infrastructure (PHP + MySQL), but the httpd server does an excellent job of serving static the kinds of web pages and data that are used. More explanation on how to use these packages will be covered in Lab 2. Alternately, you can use the Penn State PASS service as both a test <em>and</em> publishing platform. 
+        </p>
+        <p>
+            The final piece in the developer tools puzzle is figuring out how to fix problem that you may run into. The process of identifying, tracking down, and fixing these problems is called debugging (<a href="http://en.wikipedia.org/wiki/Debugging#Origin">story behind the name</a>). Debugging can take place at quite a few stages in the development process, but we will classify debugging tools as those that are used either before or during testing.  
+        </p>
+        <p>
+            Debugging that occurs before you test is usually related to static code analysis or a code review. Static code analysis is the examination of the source code by an automated process to identify syntax errors, logic problems, and more. These labs have three types of source code that can benefit from static code analysis, HTML, JavaScript, and CSS. JavaScript and CSS both have static code analysis tools that you can use. <a href="http://csslint.net/">CSS Lint</a> is a free web service where you simply copy and paste your CSS into a text field and it identifies problems, showing you where they are in a list and visually highlighting them in the text. <a href="http://www.jshint.com/">JSHint</a> is a similar tool that identifies errors in syntax, logic, and can even analyze complexity. You can use the web interface for JSHint by simply copying and pasting your source code into a text field, or by installing <a href="http://nodejs.org/">Node.js</a> and <a href="http://www.jshint.com/install/">JSHint</a> on your machine and then using the <a href="https://github.com/victorporof/Sublime-JSHint">JSHint Gutter</a> plug-in for Sublime Text, via the <a href="https://sublime.wbond.net/">Sublime Package Manager</a>, to see the result graphically in your code. HTML is more difficult to analyze because it is not a language like JavaScript and CSS. HTML validation tools do exist and can be found as plug-ins for <a href="https://chrome.google.com/webstore/detail/validity/bbicmjjbohdfglopkidebfccilipgeif?hl=en">Chrome</a> and <a href="https://addons.mozilla.org/en-US/firefox/addon/html-validator/">Firefox</a>, though their scope is limited to only identifying syntax errors. 
+        </p>
+        <p>
+            Debugging that occurs during testing is about solving problems that arise when someone is interacting with real data in an application, and most problems occur in the JavaScript used on the page. This is also known as run-time debugging. There are quite a few ways to debug code at runtime. The most brute-force way is to insert <code>console.log()</code> statements into your JavaScript. This will output a line of text, which you can customize, to the debug console of your browser for you to check where things are and what the state is at that time. This brings us to another question, what is a debugging console? A debugging console is a tool that is used to output text about the status, state, warnings, errors, and more. Some browsers (Chrome) come with a debugging environment built in, while others (Firefox) require that you install a debugging environment using a plug-in like <a href="https://addons.mozilla.org/en-US/firefox/addon/firebug/">Firebug</a>. These environments include support to analyze network connections, profile different aspects of an application, and visualize which resources are being used over time. Perhaps their most valuable feature is the addition of breakpoints, which allow you to stop your application while it's running to inspect it. Breakpoints and other aspects of runtime debugging are examined in detail in Lab 3.
+        </p>
+
+        <h2>Libraries</h2>
+
+        <p>
+            Libraries were first mentioned in Section 3, below is a list and some short discussion on the libraries that are used in labs. 
+        </p>
+        <p>
+            <strong>Leaflet.js</strong> &ndash; Leaflet is the premiere web mapping library on the web right now. This open source library manages the geospatial back-end for visualizing map tiles and data on web pages. It has an enormous plug-in library, making it one of the most extensible and powerful mapping and visualization tools out there. All maps in this curse rely on Leaflet.js. 
+        </p>
+        <p>
+            <strong>MapBox.js</strong> &ndash; MapBox.js is a plug-in for Leaflet that makes integrating with the entire MapBox line of services a breeze. This plug-in will be used to load the map tiles you will create for your projects. 
+        </p>
+        <p>
+            <strong>jQuery</strong> &ndash; jQuery is the leading library for adding interactivity and dynamically working with content on the web. Labs use jQuery as the link between user interactions and the manipulation of data. 
+        </p>
+        <p>
+            <strong>jQuery UI</strong> &ndash; jQuery UI is a popular library for creating custom UI controls in web applications. Labs will use jQuery UI to do just that, allowing users to filter and control the applications you will create.
+        </p>
+        <p>
+            <strong>D3.js</strong> &ndash; D3.js is the most powerful visualization library available, period. It uses a declarative style to manipulate and visualize data. D3.js can even be used with Leaflet to show complex data visualizations on a map. Lab 3 covers some of the basics of D3.js and how it can be used to visualize data. 
+        </p>
+
+        <h2>Services</h2>
+
+        <p>
+            Labs rely on a few external services to handle some of the heavy lifting in creating web maps. Below is a list and short description of the services that will be used in labs. 
+        </p>
+        <p>
+            <strong>MapBox Hosting</strong> &ndash; MapBox makes their money as a hosting service. They provide a spectrum of map tile hosting services that range from free to $500/month, for their premium level. Tiles created for maps in these labs will be hosted on MapBox servers using the free plans. 
+        </p>
+        <p>
+            <strong>TileMill</strong> &ndash; TileMill is a free desktop application for creating map tiles. There are <a href="https://www.mapbox.com/tilemill/docs/crashcourse/introduction/">many</a> <a href="https://www.mapbox.com/tilemill/docs/guides/add-shapefile/">tutorials</a> on the MapBox website that you can use to learn from. Lab 2 covers the basics of making map tiles with TileMill and uploading those tiles to MapBox servers.
+        </p>
+
+        <div class="section" id="section5"><h1>5 Deliverables</h1></div>
+
+        There are no official deliverable for this lab. However, all Geog 461W students are expected to complete Section 1, setting up their personal web space, prior to the first lab of the semester (.
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* Designed by Joshua Stevens | josh.stevens@psu.edu
+**                            | twitter.com/jscarto
+** -----------------------------------------------------
+** Feel free to use; I only ask for a friendly shoutout
+** and proper attribution. Enjoy!
+********************************************************/
+
+@charset "utf-8";
+/* CSS Document */
+
+
+html { 
+	padding:0px;
+	margin:0px;
+}
+
+body {
+	background-color: #f3f3f3;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	color:#000; 
+	margin:0px;
+	padding:0px;
+}
+h1 {
+	color: #272727;
+	font-size: 38px;
+	font-weight:bold;
+}
+.img_right {
+	float:right;
+	border: 2px solid #d5d5d5;
+	background: #f3f3f3;
+	margin: 20px;
+	padding: 2px;
+	display: block;
+}
+#wrapper {
+	width: 992px;
+	height: 100%;
+	margin: auto;
+	background: #f3f3f3;
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+#logo {
+	background: transparent;
+	width: 282px;
+	height: 72px;
+	top: 0px;
+	left: 8px;
+	float: left;
+	position: absolute;
+}
+#instructors {
+	width: 302px;
+	height: 90px;
+	color: #848484;
+	background: transparent;
+	float: right;
+	text-align:right;
+	line-height: 25px;
+	top: 0px;
+	right: 20px;
+	position:absolute;
+}
+#instructors a,#instructors a:link, #instructors a:hover,#instructors a:visited {
+	color: #902828;
+	text-decoration: none;
+}
+a:link, a {
+	color: #902828;
+	text-decoration: none;
+}
+a:visited {
+	color: #9b1e1e;
+}
+#main {
+	width: 912px;
+	height: 100%;
+	text-align: left;
+	background: transparent url(bg.jpg) top left repeat-y;
+	top: 100px;
+	left: 0px;
+	position: relative;
+	padding: 10px 40px 40px 40px;
+}
+#main_top {
+	width: 992px;
+	height: 35px;
+	background: transparent url(main_top.jpg) top left no-repeat;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+}
+#main a, #main a:link {
+		font-weight: bold;
+}
+.section {
+	height: 63px;
+	width: 482px;
+	color: #fff;
+	background: transparent url(section_bl.jpg) top left no-repeat;
+	margin-left: -34px;
+	margin-bottom: 22px;
+}
+.section h1 {
+	color: #fff;
+	font-size: 28px;
+	padding: 6px 5px 5px 34px;
+}
+
+h2 {
+	color: #272727;
+}
+
+h3 {
+	color:#535353;
+}
+
+.code {
+	border: 2px solid #d5d5d5;
+	margin: 12px 12px 18px 0px;
+	padding: 03px 4px 12px 4px;
+	background: #f3f3f3;
+}
+.caption {
+	padding-left: 4px;
+	color: #666;
+}
