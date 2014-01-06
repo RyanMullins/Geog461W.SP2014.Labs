@@ -90,7 +90,7 @@ HTML is a "markup" syntax for creating web pages. This syntax is based on the Ex
 Content is typified in HTML by encapsulating it in a "tag". The general form a of a tag is shown in Listing 1. 
 
 ```HTML
-<tagName>_Some Content_</tagName>
+<tagName>Some Content</tagName>
 ```
 
 As you can see, a tag consists of two structure that bound content, the former being the opening tag and the latter being the closing tags. The opening tag &mdash; which begins with a left angle bracket (<), followed immediately by the tag's name, and possibly some attributes, before a right angle bracket (>) &mdash; tells the browser (or some other structure) that everything that follows this tag, and before the closing tag, is of the content type associated with that tag. The closing tag &mdash; which begins with a left angle bracket (<), followed immediately by a forward slash (/), the tag's name, and a right angle bracket (>) &mdash; signals the end of the content of that type. 
@@ -121,7 +121,7 @@ Below is a list of commonly used tags.
 The final piece to an HTML tag are the attributes, shown in Listing 2. Attributes allow you to define further information about a tag. The two most commonly used attributes and 'id' and 'class'. The 'id' attribute gives the unique identifier for a tag so that you can reference that element in other places on the page. The 'class' attribute defines a category of elements that have similar styling. Any element can belong to multiple classes.
 
 ```HTML
-<tagName attributeName="value>">Some Content</tagName>
+<tagName attributeName="value">Some Content</tagName>
 ```
 
 ## 3.2 JavaScript
