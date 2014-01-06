@@ -90,10 +90,10 @@ HTML is a "markup" syntax for creating web pages. This syntax is based on the Ex
 Content is typified in HTML by encapsulating it in a "tag". The general form a of a tag is shown in Listing 1. 
 
 ```HTML
-&lt;_tagName_&gt;_Some Content_&lt;/_tagName_&gt;
+<tagName>_Some Content_</tagName>
 ```
 
-As you can see, a tag consists of two structure that bound content, the former being the opening tag and the latter being the closing tags. The opening tag &mdash; which begins with a left angle bracket (&lt;), followed immediately by the tag's name, and possibly some attributes, before a right angle bracket (&gt;) &mdash; tells the browser (or some other structure) that everything that follows this tag, and before the closing tag, is of the content type associated with that tag. The closing tag &mdash; which begins with a left angle bracket (&lt;), followed immediately by a forward slash (/), the tag's name, and a right angle bracket (&gt;) &mdash; signals the end of the content of that type. 
+As you can see, a tag consists of two structure that bound content, the former being the opening tag and the latter being the closing tags. The opening tag &mdash; which begins with a left angle bracket (<), followed immediately by the tag's name, and possibly some attributes, before a right angle bracket (>) &mdash; tells the browser (or some other structure) that everything that follows this tag, and before the closing tag, is of the content type associated with that tag. The closing tag &mdash; which begins with a left angle bracket (<), followed immediately by a forward slash (/), the tag's name, and a right angle bracket (>) &mdash; signals the end of the content of that type. 
 
 The content of a tag can either be text, another tag, or both. This allows you do define content type within another content type. A common example of this would be wrapping several content elements in a div element, then styling that div to give the content a special background color and border.
 
@@ -121,7 +121,7 @@ Below is a list of commonly used tags.
 The final piece to an HTML tag are the attributes, shown in Listing 2. Attributes allow you to define further information about a tag. The two most commonly used attributes and 'id' and 'class'. The 'id' attribute gives the unique identifier for a tag so that you can reference that element in other places on the page. The 'class' attribute defines a category of elements that have similar styling. Any element can belong to multiple classes.
 
 ```HTML
-&lt;_tagName_ _attributeName_="_value_>"&gt;_Some Content_&lt;/_tagName_&gt;
+<tagName attributeName="value>">Some Content</tagName>
 ```
 
 ## 3.2 JavaScript
@@ -165,6 +165,7 @@ _**Functions**_ A function is the basic unit of work for code. A function is con
 function _optionalFunctionName_(_optional, comma, separated, parameters_) {
     _the function body..._
 }
+```
 
 _**Arrays**_ Arrays are another generic container for data, which stored its members in a ordered list. Any type of data can be stored in an array then accessed via the index number. Listing 3.E details a standard array structure. 
 
@@ -197,13 +198,13 @@ var aVariable = aNumber;
 
 Operators are like a shorthand for predefined functions that allow you to do things like test equality, do simple arithmetic, and test for logical conditions. Operators are what allow us to define functions that actually do something with the data. Operators can take either one or two operands. The basic syntax for operators is shown in Listing 3.G. 
 
-**_Assignment_** Assignment operators allow you to set the value of a variable. They can also be used as a shortcut to perform arithmetic operations on an existing variable. Some examples are shown in Listing 3.G
+**_Assignment_** &mdash; Assignment operators allow you to set the value of a variable. They can also be used as a shortcut to perform arithmetic operations on an existing variable. Some examples are shown in Listing 3.G
 
-**_Comparison_** Comparison operators allow you to compare one variable with another, or one variable with a constant value, or a constant value with another (though this is not a good use of them), returning a boolean value as the result. Comparison operators are most commonly used in conditional statements. Listing 3.G details all possible comparison operators.  
+**_Comparison_** &mdash; Comparison operators allow you to compare one variable with another, or one variable with a constant value, or a constant value with another (though this is not a good use of them), returning a boolean value as the result. Comparison operators are most commonly used in conditional statements. Listing 3.G details all possible comparison operators.  
 
-**_Logical_** Logical operators allow you to compare two boolean expressions, returning a boolean value as the result. Expression can have either an AND, OR, or NOT relationship. A logical AND means that both operands are true. A logical OR means that one of the two operands are true. A logical NOT operator means that opposite the boolean value of an operand is returned. Listing 3.G shows how logical operators are used, and how to chain logical operations together. 
+**_Logical_** &mdash; Logical operators allow you to compare two boolean expressions, returning a boolean value as the result. Expression can have either an AND, OR, or NOT relationship. A logical AND means that both operands are true. A logical OR means that one of the two operands are true. A logical NOT operator means that opposite the boolean value of an operand is returned. Listing 3.G shows how logical operators are used, and how to chain logical operations together. 
 
-**_Special_** There are a series of special operators in JavaScript that do not fit any other categorization. Of these you will commonly see three, the '?' operator, the 'typeof' operator, and the 'instanceof' operator. The '?', sometimes called the conditional, operator tests a boolean relationship and returns one of two values depending on the result. The 'typeof' operator returns the type of the data referenced by the operand. The 'instanceof' operator returns the boolean result of comparing the types of operands. Listing 3.G gives some examples of these operators.
+**_Special_** &mdash; There are a series of special operators in JavaScript that do not fit any other categorization. Of these you will commonly see three, the '?' operator, the 'typeof' operator, and the 'instanceof' operator. The '?', sometimes called the conditional, operator tests a boolean relationship and returns one of two values depending on the result. The 'typeof' operator returns the type of the data referenced by the operand. The 'instanceof' operator returns the boolean result of comparing the types of operands. Listing 3.G gives some examples of these operators.
         
 ```JavaScript
 // ---- Basic Syntax ----
@@ -230,28 +231,28 @@ aNum == obj.val    // Equality, DO NOT USE , true if values of operands are the 
 aNum != obj.val    // Inequality, DO NOT USE, true if values of operands are not the same after type conversion
 aNum === obj.val   // Equality, true if values of operands are the same without type conversion
 aNum !== obj.val   // Inequality, true if values of operands are not the same without type conversion
-aNum &gt;= obj.val    // Greater than or equal to, true if operand 1 &gt;= operand 2
-aNum &gt; obj.val     // Greater, true if operand 1 &gt; operand 2
-aNum &lt; obj.val     // Less, true if operand 1 &lt; operand 2
-aNum &lt;= obj.val    // Less than or equal to, true if operand 1 &lt;= operand 2
+aNum >= obj.val    // Greater than or equal to, true if operand 1 >= operand 2
+aNum > obj.val     // Greater, true if operand 1 > operand 2
+aNum < obj.val     // Less, true if operand 1 < operand 2
+aNum <= obj.val    // Less than or equal to, true if operand 1 <= operand 2
 
 // ---- Logical ----
 
-true &amp;&amp; true            // AND, returns true
-true &amp;&amp; false           // AND, returns false
-false &amp;&amp; true           // AND, returns false
-false &amp;&amp; false          // AND, returns false
+true && true                        // AND, returns true
+true && false                       // AND, returns false
+false && true                       // AND, returns false
+false && false                      // AND, returns false
 
-true || true            // OR, returns true
-true || false           // OR, returns true
-false || true           // OR, returns true
-false || false          // OR, returns false
+true || true                        // OR, returns true
+true || false                       // OR, returns true
+false || true                       // OR, returns true
+false || false                      // OR, returns false
 
-!true                   // NOT, returns false
-!false                  // NOT, returns true
+!true                               // NOT, returns false
+!false                              // NOT, returns true
 
-(true &amp;&amp; false) || true // Chaining, returns true
-true || (false || true) // Chaining, returns true
+(true && false) || true             // Chaining, returns true
+true || (false || true)             // Chaining, returns true
 
 // ---- Special ----
 
@@ -276,7 +277,7 @@ There is more and more software being written every day, and many times two appl
 
 ## 3.3 Cascading Style Sheets</h2>
 
-Cascading style sheets, or CSS, is a format for encoding style and formatting information for web pages. CSS allows you to define nearly every visual attribute of a web page. Style definitions can be made on elements of a given type, class, or ID. Type definitions are made by naming the HTML element type that is to be affected. Using CSS classes, specified in CSS files using the syntax '._className_', you can set the style of HTML elements with the class attribute containing a specific class name. Using HTML unique IDs, specified in CSS files using the '#_ID_' syntax, you can set the style for a single HTML element. Definitions can also be chained so that elements of a certain type look one way, while elements of that same type with a given class look another. See Listing 3.H for some examples. 
+Cascading style sheets, or CSS, is a format for encoding style and formatting information for web pages. CSS allows you to define nearly every visual attribute of a web page. Style definitions can be made on elements of a given type, class, or ID. Type definitions are made by naming the HTML element type that is to be affected. Using CSS classes, specified in CSS files using the syntax `.className`, you can set the style of HTML elements with the class attribute containing a specific class name. Using HTML unique IDs, specified in CSS files using the `#ID` syntax, you can set the style for a single HTML element, though it is considered bad practice and should be avoided. Definitions can also be chained so that elements of a certain type look one way, while elements of that same type with a given class look another. See Listing 3.H for some examples. 
        
 ```CSS
 /* ---- Defining the Style of DIV elements ---- */
@@ -294,7 +295,7 @@ div {
     'font-family': Times;
 }
 
-/* ---- Defining the Style of a unique element ---- */
+/* ---- Defining the Style of a unique element (bad practice) ---- */
 
 #legend {
     'padding': 25px;
@@ -332,23 +333,23 @@ Debugging that occurs during testing is about solving problems that arise when s
 
 Libraries were first mentioned in Section 3, below is a list and some short discussion on the libraries that are used in labs. 
 
-**Leaflet.js** &ndash; Leaflet is the premiere web mapping library on the web right now. This open source library manages the geospatial back-end for visualizing map tiles and data on web pages. It has an enormous plug-in library, making it one of the most extensible and powerful mapping and visualization tools out there. All maps in this curse rely on Leaflet.js. 
+_**Leaflet.js**_ &ndash; Leaflet is the premiere web mapping library on the web right now. This open source library manages the geospatial back-end for visualizing map tiles and data on web pages. It has an enormous plug-in library, making it one of the most extensible and powerful mapping and visualization tools out there. All maps in this curse rely on Leaflet.js. 
 
-**MapBox.js** &ndash; MapBox.js is a plug-in for Leaflet that makes integrating with the entire MapBox line of services a breeze. This plug-in will be used to load the map tiles you will create for your projects. 
+_**MapBox.js**_ &ndash; MapBox.js is a plug-in for Leaflet that makes integrating with the entire MapBox line of services a breeze. This plug-in will be used to load the map tiles you will create for your projects. 
 
-**jQuery** &ndash; jQuery is the leading library for adding interactivity and dynamically working with content on the web. Labs use jQuery as the link between user interactions and the manipulation of data. 
+_**jQuery**_ &ndash; jQuery is the leading library for adding interactivity and dynamically working with content on the web. Labs use jQuery as the link between user interactions and the manipulation of data. 
 
-**jQuery UI** &ndash; jQuery UI is a popular library for creating custom UI controls in web applications. Labs will use jQuery UI to do just that, allowing users to filter and control the applications you will create.
+_**jQuery UI**_ &ndash; jQuery UI is a popular library for creating custom UI controls in web applications. Labs will use jQuery UI to do just that, allowing users to filter and control the applications you will create.
 
-**D3.js** &ndash; D3.js is the most powerful visualization library available, period. It uses a declarative style to manipulate and visualize data. D3.js can even be used with Leaflet to show complex data visualizations on a map. Lab 3 covers some of the basics of D3.js and how it can be used to visualize data. 
+_**D3.js**_ &ndash; D3.js is the most powerful visualization library available, period. It uses a declarative style to manipulate and visualize data. D3.js can even be used with Leaflet to show complex data visualizations on a map. Lab 3 covers some of the basics of D3.js and how it can be used to visualize data. 
 
 ## Services
 
 Labs rely on a few external services to handle some of the heavy lifting in creating web maps. Below is a list and short description of the services that will be used in labs. 
 
-**MapBox Hosting** &ndash; MapBox makes their money as a hosting service. They provide a spectrum of map tile hosting services that range from free to $500/month, for their premium level. Tiles created for maps in these labs will be hosted on MapBox servers using the free plans. 
+_**MapBox Hosting**_ &ndash; MapBox makes their money as a hosting service. They provide a spectrum of map tile hosting services that range from free to $500/month, for their premium level. Tiles created for maps in these labs will be hosted on MapBox servers using the free plans. 
 
-**TileMill** &ndash; TileMill is a free desktop application for creating map tiles. There are [many](https://www.mapbox.com/tilemill/docs/crashcourse/introduction/) [tutorials](https://www.mapbox.com/tilemill/docs/guides/add-shapefile/) on the MapBox website that you can use to learn from. Lab 2 covers the basics of making map tiles with TileMill and uploading those tiles to MapBox servers.
+_**TileMill**_ &ndash; TileMill is a free desktop application for creating map tiles. There are [many](https://www.mapbox.com/tilemill/docs/crashcourse/introduction/) [tutorials](https://www.mapbox.com/tilemill/docs/guides/add-shapefile/) on the MapBox website that you can use to learn from. Lab 2 covers the basics of making map tiles with TileMill and uploading those tiles to MapBox servers.
 
 # 5 Deliverables
 
