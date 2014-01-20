@@ -26,6 +26,12 @@ By the end of this lab you will be able to do the following tasks related to pre
 
 ## Lab 2: Mapping Data with Leaflet.js, MapBox.js, and TileMill
 
+In lab 2 we switch from a data collection and preparation focus, to a data representation focus. You will cover the following topics in Lab 2. 
+
+1. The basic components of a tiled web map.
+2. The tools used to create the support content for a web map. 
+3. The tools and process used to create a static web map. 
+
 ## Lab 3: Customizing Appearance and Interactivity 
 
 
