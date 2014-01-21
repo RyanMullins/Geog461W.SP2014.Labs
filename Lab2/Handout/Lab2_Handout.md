@@ -239,8 +239,8 @@ At this point, you may have a glaring question in your mind: how do we use Leafl
 
 ```HTML
 
-<script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
-<link href='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+<script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+<link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
 
 ```
 
