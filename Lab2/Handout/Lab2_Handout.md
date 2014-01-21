@@ -254,7 +254,7 @@ The code below creates a new map and then sets some interaction parameters.
 
 ```JavaScript
 
-var map = L.mapbox.map("map", "YourUserName.SomeTileID"{
+var map = L.mapbox.map("map", "YourUserName.SomeTileID", {
     'maxZoom' : 9,
     'minZoom' : 4
 });
