@@ -59,7 +59,7 @@ Click on the project to open it in the Editor.
 
 ### Step 2: Adding Data Layers
 
-And now you have a map, albeit a pretty bare one at the moment. Your project probably looks something similar to what is shown in Figure 2.4. Another quick review of the interface. in the center of everything is the map preview. This is a live rendering of what your tiles are going to look like once they are created. To the right of that is the CartoCSS editor that you use to control how your map looks, more on that later. In the upper left you will notice some interface controls. The "+" and "-" buttons control zoom level, though you can also do that with your scroll wheel. The arrows toggle between a full-screen map-view and the split map-editor view. The last piece is probably the most important, it's the editing tools menu (Figure 2.5) in the bottom left.
+And now you have a map, albeit a pretty bare one at the moment. Your project probably looks something similar to what is shown in Figure 2.4. Another quick review of the interface, in the center of everything is the map preview. This is a live rendering of what your tiles are going to look like once they are created. To the right of that is the CartoCSS editor that you use to control how your map looks, more on that later. In the upper left you will notice some interface controls. The "+" and "-" buttons control zoom level, though you can also do that with your scroll wheel. The arrows toggle between a full-screen map-view and the split map-editor view. The last piece is probably the most important, it's the editing tools menu (Figure 2.5) in the bottom left.
 
 ![Figure 2.4: New project in the "Editor"](images/tm.projectBlank.png)
 
@@ -75,7 +75,7 @@ At the bottom is the really interesting bit though. It may look like a stack of 
 
 It is always easiest to start with the datasource. At the top of the pop-up you will notice three tabs &mdash; File, SQLite, and PostGIS. These are options for the type of datasource you want to use. Your datasource is the _alaskaFires.csv_ file you created in Lab 1, so you want to select the File option. In real life, or with data from your job or something like that, you might find that SQLite or PostGIS do a better job of storing and managing your data since they are designed to do just that. For these labs we are just going to focus on using files. 
 
-Click on the browse button, navigate to where your _alaskaFires.csv_ file is on your computer, and click the "Done" button the the right of the file path. Now you can customize the ID and Class attributes for this data, if you so choose (Figure 2.7) though TileMill usually generates good names automatically. You will not need to put anything in the advanced field. When you are happy with the names, click the "Save &amp; Style" button and watch as TileMill magically adds all of those data points to the map (Figure 2.8)
+Click on the browse button, navigate to where your _alaskaFires.csv_ file is on your computer, and click the "Done" button to the right of the file path. Now you can customize the ID and Class attributes for this data, if you so choose (Figure 2.7) though TileMill usually generates good names automatically. You will not need to put anything in the advanced field. When you are happy with the names, click the "Save &amp; Style" button and watch as TileMill magically adds all of those data points to the map (Figure 2.8)
 
 ![Figure 2.7: Customizing layer metadata](images/tm.layerReady.png)
 
@@ -85,11 +85,11 @@ At this point your map should look something like what you see in Figure 2.8. Bl
 
 ![Figure 2.8: Layer added to map](images/tm.stylingStart.png)
 
-We will start by looking the attributes of the data and trying to find something interesting to represent. If you open up the _alaskaFires.csv_ file in a spreadsheet or text editor, you will notice that it has a lot of attributes, 32 to be exact (Figure 2.9). Some of these are interesting, some of them are hard to really relate to, others are going to make life easy for making this map prettier. Some things that stick out to me as "making life easier attributes" are "ORGANIZATION", "SIZECLASSN", "PROTECTION", and "FIRETYPE". Each of these is represented by a small number (less than 10) of unique values. We have four attributes to choose from... but which one to choose?
+We will start by looking at the attributes of the data and trying to find something interesting to represent. If you open up the _alaskaFires.csv_ file in a spreadsheet or text editor, you will notice that it has a lot of attributes, 32 to be exact (Figure 2.9). Some of these are interesting, some of them are hard to really relate to, others are going to make life easy for making this map prettier. Some things that stick out to me as "making life easier attributes" are "ORGANIZATION", "SIZECLASSN", "PROTECTION", and "FIRETYPE". Each of these is represented by a small number (less than 10) of unique values. We have four attributes to choose from... but which one to choose?
 
 ![Figure 2.9: Attributes of the data layer](images/tm.fireAttributes.png)
 
-I tend to like themes. One theme that occurred coincidentally for me is that all of the fires were initially colored red, which is kind of what fire looks like in nature. We want to keep this theme going, but instead of a single color why not have different colors based on some attribute related to the fire... like its size class. So, we have an attribute, "SIZECLASSN", that defines 8 discrete sizes classes with values ranging from 0 to 7. 
+I tend to like themes. One theme that occurred coincidentally for me is that all of the fires were initially colored red, which is kind of what fire looks like in nature. We want to keep this theme going, but instead of a single color why not have different colors based on some attribute related to the fire... like its size classes. So, we have an attribute, "SIZECLASSN", that defines 8 discrete size classes with values ranging from 0 to 7. 
 
 Next step: colors. The Penn State Geography has a rich history of color research. The seminal outcome from this being [ColorBrewer](http://colorbrewer2.org), a collection of some proven and tested recommendations for color schemes to use on maps. The "SIZECLASSN" data is sequential with 8 classes, and since it deals with fire we want to use a color scheme that conveys that. On ColorBrewer I select 8 class breaks, a sequential scheme, and see what looks like fire. In the multi-hue category there is a nice gradient that goes from yellow to red, much like fire. Now we have everything we need to make the data pretty, time to write some CSS-like stuff. 
 
@@ -123,7 +123,7 @@ Region is selected by manipulating the edges of the box in the middle of the scr
 
 ![Figure 2.12: Export default view](images/tm.export.png)
 
-I did some playing around while writing this lab and I think I found some decent settings (Figure 2.13). Since we are only concerned with Alaska, the first thing I did was constrict the export view to that region, roughly -180,50 to -129,72. Next I looked to find exactly which zoom levels would be useful. Zoom level 4 was pretty much the bare minimum for making it large enough to see details when the map loads. The upper limit was a bit more difficult. I found that level 9 offered enough detail that you could see individual fires well enough and kept the export size under 10MB. Levels 10 and 11 also seemed to work, but they pushed the total export size over 10MB, though not too far. Your choice might be different based on the data you chose to include. Including lots of information on smaller features like airports and infrastructure could require a higher maximum zoom level. Just be cautious in your decision. 
+I did some playing around while writing this lab and I think I found some decent settings (Figure 2.13). Since we are only concerned with Alaska, the first thing I did was constrict the export view to that region, roughly -180,50 to -129,72. Next I looked to find exactly which zoom levels would be useful. Zoom level 4 was pretty much the bare minimum for making it large enough to see details when the map loads. The upper limit was a bit more difficult. I found that level 9 offered enough detail that you could see individual fires well enough and kept the export size under 10MB. Levels 10 and 11 also seemed to work, but they pushed the total export size over 10MB, though not too far. Your choice might be different based on the data you chose to include. Including lots of information on smaller features like airports and infrastructure could require a higher maximum zoom level. Just be cautious in your decision. Next you set the map center point. To do this simply click in roughly the center of the bounding box for your map extents and it will drop a pin in the box. There should bet text in the pin, something like Z4, which is the zoom level at that point. Together, the location of the pin and the text within it mean that the map will automatically center at that location and show the tiles at the zoom level number when loaded using MapBox.js. There is also a version field, but I would not use it as it tends to just cause problems. 
 
 ![Figure 2.13: Export ready for upload](images/tm.uploadReady.png)
 
@@ -151,13 +151,13 @@ Grading information can be found in Section 4.
 
 # 3 Making a Web Map
 
-And now for something completely... related. Part B of this lab, covered in this third section, gets into actually making and publishing a web map. You will be using the Leaflet.js mapping library and the MapBox.js plu-in for Leaflet to make a map from the tiles you created. 
+And now for something completely... related. Part B of this lab, covered in this third section, gets into actually making and publishing a web map. You will be using the Leaflet.js mapping library and the MapBox.js plug-in for Leaflet to make a map from the tiles you created. 
 
 ## 3.1 Leaflet.js and MapBox.js
 
 Leaflet.js is an open-source mapping library created in 2011 by Vladimir Agafonkin, then working at CloudMade. It was an extremely lightweight library that handles tile management, basic interaction (panning and zooming), and provides simple classes for various data overlays. But maybe the biggest advantage of Leaflet was the plug-in support. Making plug-ins for Leaflet is incredibly easy, and the community quickly started creating them to handle anything that Leaflet did not support out of the box. 
 
-MapBox.js is one of those plug-ins. It was created to simply the integration process with MapBox services. So, if you host your tiles on MapBox, like you did in Part A, you can simply provide a unique ID to the MapBox.js plug-in and it will handle most everything for you. 
+MapBox.js is one of those plug-ins. It was created to simplify the integration process with MapBox services. So, if you host your tiles on MapBox, like you did in Part A, you can simply provide a unique ID to the MapBox.js plug-in and it will handle most everything for you. 
 
 ## 3.2 How To: Creating a Simple Web Map
 
@@ -235,7 +235,7 @@ From the Lab 0 handout you should be familiar with the syntax you're seeing; a s
 
 Below the header information is the body. I have kept this pretty simple. There is a `<h1>` with the title for the page, a `<div>` named "map", a `<footer>`, and an empty `<script>` element. You will use the `<footer>` as a secondary space to list data attribution. Feel free to add the name and source for the data you chose in Lab 1 at any time. The `<div>` will be used by Leaflet.js as a placeholder to put the map in. We will discuss the `<script>` element further in the next step.
 
-At this point, you may have a glaring question in your mind: how do we use Leaflet.js and MpBox.js??? At the moment you cannot. You need to import the libraries before we can use them. Lucky for us, the kind folks at MapBox wrapped Leaflet.js into their plug-in, so when you import MapBox.js you also import Leaflet.js. Below are the elements to import the MapBox.js library and the styles associated with it. Copy and paste these into the file above the `<style>` tag in the header (roughly line 10). 
+At this point, you may have a glaring question in your mind: how do we use Leaflet.js and MapBox.js??? At the moment you cannot. You need to import the libraries before we can use them. Lucky for us, the kind folks at MapBox wrapped Leaflet.js into their plug-in, so when you import MapBox.js you also import Leaflet.js. Below are the elements to import the MapBox.js library and the styles associated with it. Copy and paste these into the file above the `<style>` tag in the header (roughly line 10). 
 
 ```HTML
 
@@ -281,7 +281,7 @@ Like would be a strong word, but I tend to make the most use of the web interfac
 
 Double click on the directory that reads "[ www ]". This is the root directory for your web space and we will be storing the HTML files you create in here. At this point check to see if there is a file named something like "index.html". If there is delete it, this will make it so that when you hit the root directory from a web browser everything shows up like a file listing on your computer (e.g. Finder on OS X, Explorer on Windows, etc.). Now click on the "Upload" button on the left. Select browse from the pop-up that will appear, navigate to and select the file you've been working in, and upload it to your personal web space. 
 
-Now open a new tab in your browser and navigate to your personal web space, it should be something like www.personal.psu.edu/abc1234. From here you should see a listing of files. Select the map you just uploaded. When the page loads it should look just like it did in Figure 3.2 at the send of Step 3. If it does, you are done with Part B. If it doesn't, you should either come see me during office hours or try the debugging suggestions found in Lab 0. 
+Now open a new tab in your browser and navigate to your personal web space, it should be something like www.personal.psu.edu/abc1234. From here you should see a listing of files. Select the map you just uploaded. When the page loads it should look just like it did in Figure 3.2 at the end of Step 3. If it does, you are done with Part B. If it doesn't, you should either come see me during office hours or try the debugging suggestions found in Lab 0. 
 
 ## 3.3 Web page Customization
 
@@ -291,9 +291,9 @@ Obviously, this page is pretty empty, you might even not like the design I have 
 
 Like Part A, this part of the Lab 2 has three parts. 
 
-First, complete the walk-through through Step 3 to create a stand alone web page with a map on it. This should be able to show your map in a browser from any locally hosted environment.
+First, complete the walk-through to Step 3, to create a stand alone web page with a map on it. This should be able to show your map in a browser from any locally hosted environment.
 
-Second, upload this file to you Penn State Personal Web Space. It should be publicly accessible and look identical to the map that is shown when you test locally.
+Second, upload this file to your Penn State Personal Web Space. It should be publicly accessible and look identical to the map that is shown when you test locally.
 
 Third, submit an update to the Lab 2 Part B dropbox on Angel, including a link to the map on your personal web space.  
 
