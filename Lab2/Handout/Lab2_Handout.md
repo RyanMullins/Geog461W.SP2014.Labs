@@ -59,13 +59,13 @@ Click on the project to open it in the Editor.
 
 ### Step 2: Adding Data Layers
 
-And now you have a map, albeit a pretty bare one at the moment. Your project probably looks something similar to what is shown in Figure 2.4. Another quick review of the interface, in the center of everything is the map preview. This is a live rendering of what your tiles are going to look like once they are created. To the right of that is the CartoCSS editor that you use to control how your map looks, more on that later. In the upper left you will notice some interface controls. The "+" and "-" buttons control zoom level, though you can also do that with your scroll wheel. The arrows toggle between a full-screen map-view and the split map-editor view. The last piece is probably the most important, it's the editing tools menu (Figure 2.5) in the bottom left.
+And now you have a map, albeit a pretty bare one at the moment. Your project probably looks something similar to what is shown in Figure 2.4. Another quick review of the interface, in the center of everything is the map preview. This is a live rendering of what your tiles are going to look like once they are created. To the right of that is the CartoCSS editor that you use to control how your map looks, more on that later. In the upper left you will notice some interface controls. The "+" and "-" buttons control zoom level, though you can also do that with your scroll wheel or track pad gestures. The arrows toggle between a full-screen map-view and the split map-editor view. The last piece is probably the most important, it's the editing tools menu (Figure 2.5) in the bottom left.
 
 ![Figure 2.4: New project in the "Editor"](images/tm.projectBlank.png)
 
 TileMill has a pretty great set of editing tools built in, going down the list... The pointing finger thing (technical term, obviously) let's you control the templates. This is where you can add a legend and even some interactivity to your maps. We will get to the interaction bits in the next lab, but the legend is pretty easy to figure out and can make a world of difference. You type in text and it makes it appear, it is that simple. You can do all sorts of advanced things too, look for more advanced tutorials [here](https://www.mapbox.com/tilemill/docs/guides/advanced-legends/).
 
-Below the pointy finger thing is a button with the letter "A" in it. Clicking on this will bring up an absolutely massive list of all the fonts you can use in your tiles. Be careful, it is pretty easy to get lost in there. Below This is a pair of curly braces (that's "{ }" those kind, plan on becoming familiar with these), and clicking on that brings up a reference guide for CartoCSS. This is definitely going to become your friend.  
+Below the pointy finger thing is a button with the letter "A" in it. Clicking on this will bring up an absolutely massive list of all the fonts you can use in your tiles. Be careful, it is pretty easy to get lost in there. Below this is a pair of curly braces (that's "{ }" those kind, plan on becoming familiar with these), and clicking on that brings up a reference guide for CartoCSS. This is definitely going to become your friend.  
 
 ![Figure 2.5: Examining the layers in the project](images/tm.viewLayers.png)
 
@@ -73,7 +73,7 @@ At the bottom is the really interesting bit though. It may look like a stack of 
 
 ![Figure 2.6: Adding a new layer](images/tm.newLayer.png)
 
-It is always easiest to start with the datasource. At the top of the pop-up you will notice three tabs &mdash; File, SQLite, and PostGIS. These are options for the type of datasource you want to use. Your datasource is the _alaskaFires.csv_ file you created in Lab 1, so you want to select the File option. In real life, or with data from your job or something like that, you might find that SQLite or PostGIS do a better job of storing and managing your data since they are designed to do just that. For these labs we are just going to focus on using files. 
+It is always easiest to start with the datasource. At the top of the pop-up you will notice three tabs &mdash; File, SQLite, and PostGIS. These are options for the type of datasource you want to use. Your datasource is the _alaskaFires.csv_ file you created in Lab 1, so you want to select the File option. In real life, or with data from your job or something like that, you might find that SQLite or PostGIS do a better job of storing and managing your data since they are databases designed to do just that. For these labs we are just going to focus on using files. 
 
 Click on the browse button, navigate to where your _alaskaFires.csv_ file is on your computer, and click the "Done" button to the right of the file path. Now you can customize the ID and Class attributes for this data, if you so choose (Figure 2.7) though TileMill usually generates good names automatically. You will not need to put anything in the advanced field. When you are happy with the names, click the "Save &amp; Style" button and watch as TileMill magically adds all of those data points to the map (Figure 2.8)
 
@@ -81,23 +81,25 @@ Click on the browse button, navigate to where your _alaskaFires.csv_ file is on 
 
 ### Step 3: Styling Data Layers
 
-At this point your map should look something like what you see in Figure 2.8. Blue ocean, off-white land masses, red dots for all the fires. While it is not necessarily bad, it could definitely look better. Next, we will look at what you can do with CartoCSS to make it look a bit better. But before we go jumping into the deep end with CartoCSS, we should probably figure out what we want to change and how we can go about doing that. 
+At this point your map should look something like what you see in Figure 2.8. Blue ocean, off-white land masses, red dots for all the fires. It could definitely look better. Next, we will look at what you can do with CartoCSS to improve the design. But before we go jumping into the deep end with CartoCSS, we should probably figure out what we want to change and how we can go about doing that. 
 
 ![Figure 2.8: Layer added to map](images/tm.stylingStart.png)
 
-We will start by looking at the attributes of the data and trying to find something interesting to represent. If you open up the _alaskaFires.csv_ file in a spreadsheet or text editor, you will notice that it has a lot of attributes, 32 to be exact (Figure 2.9). Some of these are interesting, some of them are hard to really relate to, others are going to make life easy for making this map prettier. Some things that stick out to me as "making life easier attributes" are "ORGANIZATION", "SIZECLASSN", "PROTECTION", and "FIRETYPE". Each of these is represented by a small number (less than 10) of unique values. We have four attributes to choose from... but which one to choose?
+We will start by looking at the attributes of the data and trying to find something interesting to represent. If you open up the _alaskaFires.csv_ file in a spreadsheet or text editor, you will notice that it has a lot of attributes, 32 to be exact (Figure 2.9). 
+
+I have had ample time to examine this data, and I have found that some attributes are easier than others to understand and represent in a meaningful way (information about all attributes and their meanings can be found [here](http://wildfire.cr.usgs.gov/firehistory/about.html)). Of the attributes available, "ORGANIZATION", "SIZECLASSN", "PROTECTION", and "FIRETYPE" stand out as the some of the most relevant attributes to a firefighter. Each of these is represented by a small number (less than 10) of unique values. We have four attributes to choose from... but which one to choose?
 
 ![Figure 2.9: Attributes of the data layer](images/tm.fireAttributes.png)
 
-I tend to like themes. One theme that occurred coincidentally for me is that all of the fires were initially colored red, which is kind of what fire looks like in nature. We want to keep this theme going, but instead of a single color why not have different colors based on some attribute related to the fire... like its size classes. So, we have an attribute, "SIZECLASSN", that defines 8 discrete size classes with values ranging from 0 to 7. 
+A topical theme that occurred coincidentally is that all of the fires were initially colored red, which is kind of what fire looks like in nature. We want to keep this theme going, but instead of a single color why not have different colors based on some attribute related to the fire... like the size classes. There is an attribute, "SIZECLASSN", that defines 8 discrete size classes with values ranging from 0 to 7 that we can use to define the styling of these markers. 
 
-Next step: colors. The Penn State Geography has a rich history of color research. The seminal outcome from this being [ColorBrewer](http://colorbrewer2.org), a collection of some proven and tested recommendations for color schemes to use on maps. The "SIZECLASSN" data is sequential with 8 classes, and since it deals with fire we want to use a color scheme that conveys that. On ColorBrewer I select 8 class breaks, a sequential scheme, and see what looks like fire. In the multi-hue category there is a nice gradient that goes from yellow to red, much like fire. Now we have everything we need to make the data pretty, time to write some CSS-like stuff. 
+Up next: colors. Penn State Geography has a rich history of color research. The seminal outcome from this being [ColorBrewer](http://colorbrewer2.org), a collection of some proven and tested recommendations for color schemes to use on maps. The "SIZECLASSN" data is sequential with 8 classes, and since it deals with fire we want to use a color scheme that conveys that. On ColorBrewer I select 8 class breaks, a sequential scheme, and see what looks like fire. In the multi-hue category there is a nice gradient that goes from yellow to red, much like fire. Now we have everything we need to make the data pretty, time to write some CSS-like stuff. 
 
 Back in TileMill make sure you can see the CartoCSS editor. You should see three little sections of code &dash; `Map`, `#countries`, and something similar to `#alaskaFires`. These are blocks of CSS that define the style for the specified selector. Lab 0 covered selectors in the context of HTML, but here they function a bit differently. In CartoCSS each selector defines the style for a layer, given that layers ID using the "#" character, or a class of features, given the class name after a "." character. At the moment you have two selectors, "#countries" and "#alaskaFires", that define the style for a layer. Inside of the curly braces for each of these selectors you see some properties that are being defined. Look at the `marker-fill-color` property in the `#alaskaFires` selector. This property controls the fill color of the circle markers for the fires, and we want to set the color based on the "SIZECLASSN" value for each fire.  
 
-To do this you need need to make use of conditionals, a feature of CartoCSS that functions just like conditional in JavaScript. The conditional syntax goes like this: `[nameOfAttribute conditionalOperator value] { property: value; }`. You can use this syntax to create conditional appearances for any attribute of any data layer in your map. 
+To do this you need need to make use of conditionals, a feature of CartoCSS that functions just like conditionals in JavaScript (see Section 3.2 of Lab 0). The conditional syntax goes like this: `[nameOfAttribute conditionalOperator value] { property: value; }`. You can use this syntax to create conditional appearances for any attribute of any data layer in your map. 
 
-You need to make 8 conditional statements, one for each class, that sets the `marker-fill-color` property for each class, being sure to use the hexadecimal color values from ColorBrewer. You can see the exact code I used to do this in Figure 2.10. Once you write these click the "Save" button in the top right corner and watch the map refresh, you should see something like what I have created in Figure 2.10. 
+You need to make 8 conditional statements, one for each class, that sets the `marker-fill-color` property for each class, being sure to use the hexadecimal color values from ColorBrewer. You can see the exact code I used to do this in Figure 2.10. Once you write these, click the "Save" button in the top right corner and watch the map refresh, you should see something like what I have created in Figure 2.10. 
 
 ![Figure 2.10: Customizing symbol color based on attributes](images/tm.stylingDone.png)
 
@@ -113,9 +115,9 @@ Now to generate and publish them. Luckily, TileMill provides all sorts of functi
 
 ![Figure 2.11: Selecting the export method](images/tm.toExport.png)
 
-After you select the "Upload" option one of two things will happen. If you have not linked TileMill to your MapBox account, you will be asked to do so. This is just a simple form asking for your email and password to log in to your MapBox account. TileMill is only ever granted permission to upload tiles to your account, and to remove existing tiles from it; it cannot change you password, personal, or billing information. 
+After you select the "Upload" option one of two things will happen. If you have not linked TileMill to your MapBox account, you will be asked to do so. This is just a simple form asking for your email and password to log in to your MapBox account. When TileMill is linked to your account it is only granted permission to upload tiles space associated with your account, and to remove existing tiles from it; it cannot change you password, personal, or billing information at present. 
 
-The second option if for the exporter view to show up (Figure 2.12). This view allows you to select the region and zoom level range that you want to export, while adding metadata (name, description, and attribution) and setting the default map center. 
+The second option is for the exporter view to show up (Figure 2.12). This view allows you to select the region and zoom level range that you want to export, while adding metadata (name, description, and attribution) and setting the default map center. 
 
 Perhaps the most important piece of information in this view is the size of the exported tiles, measured in bytes of data and located below the zoom level selector. Unless you chose to pay for more, you signed up for a free MapBox account at the beginning of this lab. This gives you 50MB of data storage, so you need to be conscious of how much space any one project is taking up on your account. The only real way to control size is to adjust the region and zoom levels. 
 
@@ -123,7 +125,7 @@ Region is selected by manipulating the edges of the box in the middle of the scr
 
 ![Figure 2.12: Export default view](images/tm.export.png)
 
-I did some playing around while writing this lab and I think I found some decent settings (Figure 2.13). Since we are only concerned with Alaska, the first thing I did was constrict the export view to that region, roughly -180,50 to -129,72. Next I looked to find exactly which zoom levels would be useful. Zoom level 4 was pretty much the bare minimum for making it large enough to see details when the map loads. The upper limit was a bit more difficult. I found that level 9 offered enough detail that you could see individual fires well enough and kept the export size under 10MB. Levels 10 and 11 also seemed to work, but they pushed the total export size over 10MB, though not too far. Your choice might be different based on the data you chose to include. Including lots of information on smaller features like airports and infrastructure could require a higher maximum zoom level. Just be cautious in your decision. Next you set the map center point. To do this simply click in roughly the center of the bounding box for your map extents and it will drop a pin in the box. There should bet text in the pin, something like Z4, which is the zoom level at that point. Together, the location of the pin and the text within it mean that the map will automatically center at that location and show the tiles at the zoom level number when loaded using MapBox.js. There is also a version field, but I would not use it as it tends to just cause problems. 
+I did some playing around while writing this lab and I think I found some decent settings (Figure 2.13). Since we are only concerned with Alaska, the first thing I did was constrain the export view to that region, roughly -180,50 to -129,72. Next I looked to find exactly which zoom levels would be useful. Zoom level 4 was pretty much the bare minimum for making it large enough to see details when the map loads. The upper limit was a bit more difficult. I found that level 9 offered enough detail that you could see individual fires well enough and kept the export size under 10MB. Levels 10 and 11 also seemed to work, but they pushed the total export size over 10MB, though not too far. Your choice might be different based on the data you chose to include. Including lots of information on smaller features like airports and infrastructure could require a higher maximum zoom level. Just be cautious in your decision. Next you set the map center point. To do this simply click in roughly the center of the bounding box for your map extents and it will drop a pin in the box. There should bet text in the pin, something like Z4, which is the zoom level at that point. Together, the location of the pin and the text within it mean that the map will automatically center at that location and show the tiles at the zoom level number when loaded using MapBox.js. There is also a version field, but I would not use it as it tends to just cause problems. 
 
 ![Figure 2.13: Export ready for upload](images/tm.uploadReady.png)
 
@@ -133,7 +135,7 @@ Once you figure out the parameters of your export (don't forget to attribute you
 
 ## 2.3 Advanced Topics and Tutorials
 
-This lab has just barely scratched the surface of what can be done with TileMill. There is a slew of more advanced examples on the TileMill web page. You can check them out [here](https://www.mapbox.com/tilemill/docs/guides/add-shapefile/).
+This lab has just barely scratched the surface of what can be done with TileMill. There are a slew of more advanced examples on the TileMill web page. You can check them out [here](https://www.mapbox.com/tilemill/docs/guides/add-shapefile/).
 
 ## 2.4 Deliverables
 
@@ -141,11 +143,11 @@ And so concludes Section 2 and Part A of Lab #2. The deliverable for this labs h
 
 First, simply create a free MapBox account. You will need this later on and it provides me an easy way to check your progress through Part A.
 
-Second, create map tiles for the data you downloaded in Lab 1 using TileMill and publish them to MapBox. The data included on these tiles should include the fire data from the walk-through above, as well as some representation of the extra dataset(s) you collected in Lab 1. 
+Second, create map tiles for the data you downloaded in Lab 1 using TileMill and publish them to MapBox. The data on these tiles should include the fire data from the walk-through above, as well as some representation of the extra dataset(s) you collected in Lab 1. 
 
 Third, submit an update in the Lab 2 Part A dropbox containing a link to the tiles you made on MapBox.com (found using the link from the View Exports view). 
 
-Grading information can be found in Section 4.
+Grading information can be found in Section 5.
 
 
 
@@ -155,7 +157,7 @@ And now for something completely... related. Part B of this lab, covered in this
 
 ## 3.1 Leaflet.js and MapBox.js
 
-Leaflet.js is an open-source mapping library created in 2011 by Vladimir Agafonkin, then working at CloudMade. It was an extremely lightweight library that handles tile management, basic interaction (panning and zooming), and provides simple classes for various data overlays. But maybe the biggest advantage of Leaflet was the plug-in support. Making plug-ins for Leaflet is incredibly easy, and the community quickly started creating them to handle anything that Leaflet did not support out of the box. 
+Leaflet.js is an open-source mapping library created in 2011 by Vladimir Agafonkin, then working at CloudMade. It is an extremely lightweight library that handles tile management, basic interaction (panning and zooming), and provides simple classes for various data overlays. But maybe the biggest advantage of Leaflet was the plug-in support. Making plug-ins for Leaflet is incredibly easy, and the community quickly started creating them to handle anything that Leaflet did not support out of the box. 
 
 MapBox.js is one of those plug-ins. It was created to simplify the integration process with MapBox services. So, if you host your tiles on MapBox, like you did in Part A, you can simply provide a unique ID to the MapBox.js plug-in and it will handle most everything for you. 
 
@@ -171,9 +173,9 @@ Before you do anything else, you should download some source code I prepared. To
 
 ### Step 2: Importing the Leaflet.js Library and MapBox.js Plug-In
 
-The first order of business should be to rename the file you just opened. It will make things a lot easier for me to grade if you use the naming convention I showed in the example. Simply do a save as and rename the file to include your name (first, last, both, however). Now that the file is ready to go, let us take a look at exactly what is going on inside it.
+The first order of business should be to rename the file you just opened. It will make things a lot easier for me to grade if you use the naming convention I showed in the example. Simply do a save as and rename the file to include your name (see class syllabus on Angel for standard naming conventions). Now that the file is ready to go, let us take a look at exactly what is going on inside it.
 
-This file is an HTML file, which means it can contain any mix of HTML markup, JavaScript code, and CSS styling information. At the moment, the page contains a combination of HTML and CSS, with a placeholder for some JavaScript. Below is a copy of all of the markup and CSS in the file, and just in case anything starts going sideways on you just replace the contents of the file with this and start over. Let's go through the contents (mostly) line by line. 
+This file is an HTML file, which means it can contain any mix of HTML markup, JavaScript code, and CSS styling information. At the moment, the page contains a combination of HTML and CSS, with a placeholder for some JavaScript. Below is a copy of all of the markup and CSS in the file, and just in case anything starts going sideways on you, just replace the contents of the file with this and start over. Let's go through the contents (mostly) line by line. 
 
 ```HTML
 
@@ -235,7 +237,7 @@ From the Lab 0 handout you should be familiar with the syntax you're seeing; a s
 
 Below the header information is the body. I have kept this pretty simple. There is a `<h1>` with the title for the page, a `<div>` named "map", a `<footer>`, and an empty `<script>` element. You will use the `<footer>` as a secondary space to list data attribution. Feel free to add the name and source for the data you chose in Lab 1 at any time. The `<div>` will be used by Leaflet.js as a placeholder to put the map in. We will discuss the `<script>` element further in the next step.
 
-At this point, you may have a glaring question in your mind: how do we use Leaflet.js and MapBox.js??? At the moment you cannot. You need to import the libraries before we can use them. Lucky for us, the kind folks at MapBox wrapped Leaflet.js into their plug-in, so when you import MapBox.js you also import Leaflet.js. Below are the elements to import the MapBox.js library and the styles associated with it. Copy and paste these into the file above the `<style>` tag in the header (roughly line 10). 
+At this point, you might have noticed that there is not a single reference to Leaflet.js or MapBox.js at this time. I did not include the import statements for these libraries, intentionally, to show you the proper place to import libraries in your pages. Luckily, the kind folks at MapBox wrapped Leaflet.js into their plug-in, so we only have to import MapBox.js to gain the full functionality of Leaflet. Below are the elements to import the MapBox.js library and the styles associated with it. Copy and paste these into the file above the `<style>` tag in the header (roughly line 10). 
 
 ```HTML
 
@@ -244,13 +246,13 @@ At this point, you may have a glaring question in your mind: how do we use Leafl
 
 ```
 
-And now you are ready to make a map. 
+It is important to note that we put these elements in the header and not in the body. When placed in the header, libraries and style information are downloaded and made available prior to the rendering or processing of anything in the page body. If you were to add these elements to the body, they may or may not be available to other script elements of the page depending on their order of the elements, and the time it takes to download the resources these elements refer to. As such, it is considered best practice to include all JavaScript library and stylesheet imports in the header, and only include scripts related to the handling the actual content of the page, and interaction with this content, in the body. 
 
 ### Step 3: Creating a Map Using JavaScript
 
-This step requires you to write just a little bit of code. I understand that some of you may have never written code before. Do not worry about it, I plan on explaining everything you need to write before you write it, and hopefully it will make sense. 
+This step requires you to write just a little bit of code. I understand that some of you may have never written code before. Do not worry. These labs are designed to ease you into the process of writing code. This lab focuses on using functions defined in external libraries to create objects, then using the objects functions available from these objects to set basic parameters. In the next lab you will get practice writing your own functions and logic to control how the page responds to interactions. Lab 0 provides an overview of functions and objects, and explains the process of creating and using variables.
 
-The code below creates a new map and then sets some interaction parameters. 
+The code below creates a new map and then sets some parameters. 
 
 ```JavaScript
 
@@ -269,7 +271,7 @@ Walking through this bit of code... The first thing it is doing is creating a ne
 
 We start with a call to the map's `setView()` function. This makes sure the map is (for the most part) centered over Alaska and set to the appropriate zoom level. Next, we call the `setMaxBounds()` function, which sets the maximum and minimum latitude and longitude that can be seen on the map. This is important since we only chose to export a subset of tiles, so going beyond the bounds we chose will mean that tiles cannot be shown and the user might get lost in the middle of nowhere. 
 
-Copy and paste these lines of code into the `<script>` tag, roughly on line 49. Then, in TileMill, open the "View Exports" view and click the "View" button to see your map on MapBox.com. In the URL you will see something like `tiles.mapbox.com/v3/YourUserName.SomeTileID/aBunchOfOtherStuff`, copy the YourUserName.SomeTileID and paste it in place of the same portion of code that you just copied into the `<script>` tag. Save your work, and open the file in your web browser of choice. You should see something like what is shown in Figure 3.2. If you do, you are on the right track. If you do not, something went wrong and you should either come see me or try and use some of the debugging techniques discussed in Lab 0. 
+Copy and paste these lines of code into the `<script>` tag, roughly on line 49. Then, in TileMill, open the "View Exports" view and click the "View" button to see your map on MapBox.com. In the URL you will see something like `tiles.mapbox.com/v3/YourUserName.SomeTileID/aBunchOfOtherStuff`, copy the YourUserName.SomeTileID and paste it in place of the same portion of code that you just copied into the `<script>` tag. Save your work, and open the file in your web browser of choice. You should see something like what is shown in Figure 3.2. If you do, you are on the right track. If you do not, something went wrong and try and use some of the debugging techniques discussed in Lab 0 or come see me in office hours. 
 
 ![Figure 3.2: A locally hosted Fire Map](images/lf.localFireMap.png)
 
@@ -277,15 +279,15 @@ Copy and paste these lines of code into the `<script>` tag, roughly on line 49. 
 
 The last step in this is to upload it to a web server. In Lab 0 you should have activated your Penn State Personal Web Space. We will use this to host your map, all we need to do is move the file into position. 
 
-Like would be a strong word, but I tend to make the most use of the web interface to the PASS system (the system of services that include your Personal Web Space), called the [PASS Explorer](https://explorer.pass.psu.edu). You log on to this service using your regular Penn State Access Account user name and password. Once you have logged in you are shown a list of directories (names in square brackets) and files in the center, and a series of tools and action to act upon these files and directories. 
+Like would be a strong word, but I tend to make the most use of the web interface to the PASS system (the system of services that include your Personal Web Space), called the [PASS Explorer](https://explorer.pass.psu.edu), rather than using the PASS system dives that are mapped to the Penn State and Geography Department computers when you log in. You log on to this service using your regular Penn State Access Account user name and password. Once you have logged in you are shown a list of directories (names in square brackets) and files in the center, and a series of tools and actions to act upon these files and directories. 
 
-Double click on the directory that reads "[ www ]". This is the root directory for your web space and we will be storing the HTML files you create in here. At this point check to see if there is a file named something like "index.html". If there is delete it, this will make it so that when you hit the root directory from a web browser everything shows up like a file listing on your computer (e.g. Finder on OS X, Explorer on Windows, etc.). Now click on the "Upload" button on the left. Select browse from the pop-up that will appear, navigate to and select the file you've been working in, and upload it to your personal web space. 
+Double click on the directory that reads "[ www ]". This is the root directory for your web space and we will be storing the HTML files you create in here. At this point check to see if there is a file named something like "index.html". If there is delete it. This will make it so that when you hit the root directory from a web browser everything shows up like a file listing on your computer (e.g. Finder on OS X, Explorer on Windows, etc.). Now click on the "Upload" button on the left. Select browse from the pop-up that will appear, navigate to and select the file you've been working in, and upload it to your personal web space. 
 
-Now open a new tab in your browser and navigate to your personal web space, it should be something like www.personal.psu.edu/abc1234. From here you should see a listing of files. Select the map you just uploaded. When the page loads it should look just like it did in Figure 3.2 at the end of Step 3. If it does, you are done with Part B. If it doesn't, you should either come see me during office hours or try the debugging suggestions found in Lab 0. 
+Now open a new tab in your browser and navigate to your personal web space, it should be something like www.personal.psu.edu/abc1234. From here you should see a listing of files. Select the map you just uploaded. When the page loads it should look just like it did in Figure 3.2 at the end of Step 3. If it does, you are done with Part B. If it doesn't, you should try the debugging suggestions found in Lab 0 or come see me during office hours. 
 
 ## 3.3 Web page Customization
 
-Obviously, this page is pretty empty, you might even not like the design I have provided. If you want to add a bit more flair or change things around, you can easily do this by changing the CSS or adding a bit more content to the body. One thing to consider is making the map full screen. Mike Bostock has a simple example on how to make a map fullscreen, you can find it [here](http://bl.ocks.org/d3noob/7654694). Play around a bit and see what you can do.
+Obviously, this page is pretty empty, you might not even like the design I have provided. If you want to add a bit more flair or change things around, you can easily do this by changing the CSS or adding a bit more content to the body. One thing to consider is making the map full screen. Mike Bostock has a simple example on how to make a map full-screen, you can find it [here](http://bl.ocks.org/d3noob/7654694). Play around a bit and see what you can do.
 
 ## 3.4 Deliverables
 
@@ -297,9 +299,22 @@ Second, upload this file to your Penn State Personal Web Space. It should be pub
 
 Third, submit an update to the Lab 2 Part B dropbox on Angel, including a link to the map on your personal web space.  
 
+Grading information can be found in Section 5.
 
 
-# 4 Deliverables and Grading 
+
+# 4 Writing Assignment: Map Semiotics
+
+All maps communicate via “sign relations”; thus all maps include a complex set of semiotic relationships &mdash; this is even the case for simple base maps such as the one you created for this lab. For this writing assignment, generate a 175-200 word short essay that addresses one of the semiotic concepts listed below in relation to your map. Specifically, discuss one of the following: 
+
+a)  Some relevant aspect of the specific map sign relationships in your map from the perspective of interpretant as mediator (as defined in the readings)
+b)  Specific uses of visual variables in your map. This might include a justification of specific visual variable choices based on ideas in the readings for why specific visual variables and their variants were used; be sure to keep in mind that a “visual variable” is a feature of a sign-vehicle that is varied to depict differences in the referent (figure 6.30 contains a list of visual variables from which you might pick two or three used on your map to discuss)
+
+In your short essay, draw upon a specific component of your reading assignment for the week (making reference to it in your short essay). Paste a screen capture of your map into the Word file so that it is clear what you are referring to in your essay. Feel free to annotate the screen capture to help illustrate your discussion.
+
+
+
+# 5 Deliverables and Grading 
 
 **Lab 2 Part A (03 Feb 2014)**
 
@@ -319,9 +334,9 @@ This deliverable has three parts:
 
 **Lab 2 Writing Assignment (03 Feb 2014)**
 
-Please generate a short essay (175-200 words) based on the instructions below (as a Word document) and upload to the dropbox. A first draft is due at 8:00 Mon 03 Feb 2014; the final, revised final version is due at 8:00 Mon 10 Feb 2014.
+The final element of Lab 2 is a short essay (175-200 words) based on the instructions below. It must be produced as a Word document and uploaded to the dropbox on Angel. A first draft is due at 8:00 Mon 03 Feb 2014; the final, revised final version is due at 8:00 Mon 10 Feb 2014.
 
-This part of the assignment is the core written component of the project. In keeping with the ‘W’ designation for the course, you will receive feedback on both the substance of your answer and the quality of the writing. For this first lab, you will have an opportunity to revise your answer based on feedback you will receive on the writing (comments on the draft will focus just on the writing, not the content; the content and the writing will be assessed for the final version).
+This part of the assignment is the core written component of the project. In keeping with the ‘W’ designation for the course, you will receive feedback on both the substance of your answer and the quality of the writing. For this first lab writing assignment, you will have an opportunity to revise your answer based on feedback you will receive on the writing (comments on the draft will focus just on the writing, not the content; the content and the writing will be assessed for the final version).
 
 This part of the assignment is worth 10 points &ndash; allocated for both your answer and the quality of the writing (once revised).
 
