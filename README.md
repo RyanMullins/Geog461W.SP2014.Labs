@@ -34,4 +34,8 @@ In lab 2 we switch from a data collection and preparation focus, to a data repre
 
 ## Lab 3: Customizing Appearance and Interactivity 
 
+Lab 3 builds on the map made in Lab 2, exploring another aspect of dynamic representation: interaction. This lab covers the following topics. 
 
+1. The fundamentals of adding interactivity to a web map &mdash; how interactivity can be used to gain more information about the data, or to filter the data being displayed on the map;
+2. Creating interactive map symbols that offer greater details about the features;
+3. Creating interactive UI elements to control data filters.

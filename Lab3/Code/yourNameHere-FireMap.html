@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Geog 461W Lab 2: Fire Map">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <title>Geog 461W | Lab 2 | Making a Fire Map</title>
+
+    <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+    <script type="text/javascript" src="leaflet.geocsv.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.js"></script>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+
+    <style type="text/css">
+        body {
+            padding: 0px;
+            font: 14px "Futura", "Lucida Grande", Helvetica, Arial, sans-serif;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        a {
+            color: #00B7FF;
+        }
+
+        footer {
+            text-align: center;
+        }
+
+        #map {
+            width: 500px;
+            height: 500px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fire Map</h1>
+    <div id="map"></div>
+    <footer>
+        Data Courtesy <a target="_blank" href="http://wildfire.cr.usgs.gov/firehistory/data.html">USGS Federal Wildland Fire Occurrence Dataset</a><br/>
+        <!-- Attribute you data here -->
+    </footer>
+
+    <script type="text/javascript">
+        var map = L.mapbox.map("map", "ryanmullins.Geog461W", {
+            'maxZoom' : 9,
+            'minZoom' : 4
+        });
+
+        map
+            .setView(L.latLng(61, -160.5), 4)
+            .setMaxBounds(L.latLngBounds(L.latLng(50,-180), L.latLng(72,-129)));
+
+    </script>
+</body>
+</html>
