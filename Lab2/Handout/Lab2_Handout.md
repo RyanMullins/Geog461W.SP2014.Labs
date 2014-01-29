@@ -307,8 +307,8 @@ Grading information can be found in Section 5.
 
 All maps communicate via “sign relations”; thus all maps include a complex set of semiotic relationships &mdash; this is even the case for simple base maps such as the one you created for this lab. For this writing assignment, generate a 175-200 word short essay that addresses one of the semiotic concepts listed below in relation to your map. Specifically, discuss one of the following: 
 
-a)  Some relevant aspect of the specific map sign relationships in your map from the perspective of interpretant as mediator (as defined in the readings)
-b)  Specific uses of visual variables in your map. This might include a justification of specific visual variable choices based on ideas in the readings for why specific visual variables and their variants were used; be sure to keep in mind that a “visual variable” is a feature of a sign-vehicle that is varied to depict differences in the referent (figure 6.30 contains a list of visual variables from which you might pick two or three used on your map to discuss)
+*  Some relevant aspect of the specific map sign relationships in your map from the perspective of interpretant as mediator (as defined in the readings);
+*  Specific uses of visual variables in your map. This might include a justification of specific visual variable choices based on ideas in the readings for why specific visual variables and their variants were used; be sure to keep in mind that a “visual variable” is a feature of a sign-vehicle that is varied to depict differences in the referent (figure 6.30 contains a list of visual variables from which you might pick two or three used on your map to discuss).
 
 In your short essay, draw upon a specific component of your reading assignment for the week (making reference to it in your short essay). Paste a screen capture of your map into the Word file so that it is clear what you are referring to in your essay. Feel free to annotate the screen capture to help illustrate your discussion.
 
