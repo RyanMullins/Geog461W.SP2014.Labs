@@ -317,7 +317,7 @@ The last piece to this puzzle is to define the `filterData` function. What this 
 
 ```JavaScript 
 
-var filterData = function () {
+function filterData () {
 
     // ---- Removing All Layers ----
 
