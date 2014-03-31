@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Geog 461W | Animation Demo</title>
+
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+  <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+  <style type="text/css">
+    html {
+      width: 100%;
+      height: 100%;      
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #map {
+      width: 100%;
+      height: 93%;
+    }
+
+    #controls {
+      width: 100%;
+      text-align: center;
+      margin-right: auto;
+      margin-left: auto;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="controls" class="ui-widget-header ui-corner-all">
+    <button id="prev">previous</button>
+    <button id="play">play</button>
+    <button id="next">next</button>
+  </div>
+  <script type="text/javascript">
+
+    // ---- Time-related Variables ----
+    
+    var timeStep = 0;
+    var featureLayerPairs = [];
+    var timer = null;
+
+    // ---- Utility Functions ----
+    
+    function styleFeature (feature) {
+
+      var style = {
+        "color" : "#fff",
+        "opacity" : 1,
+        "fillColor" : "",
+        "fillOpacity" : 1,
+      };
+
+      if (feature.properties.Population[timeStep] > 15000) {
+        style.fillColor = "#3182bd";
+      } else if (feature.properties.Population[timeStep] > 7500) {
+        style.fillColor = "#9ecae1";
+      } else {
+        style.fillColor = "#deebf7";
+      }
+
+      return style;
+    }
+
+    function getMaxTimeStep () {
+      return featureLayerPairs[0].feature.properties.Population.length - 1;
+    }
+
+    function incrementTimeStep (increment) {
+
+      if (timeStep === 0 && increment < 0) {
+        timeStep = getMaxTimeStep();
+      } else if (timeStep === getMaxTimeStep() && increment > 0) {
+        timeStep = 0;
+      } else {
+        timeStep += increment;
+      }
+
+      for (var i = 0; i < featureLayerPairs.length; i++) {
+        pair = featureLayerPairs[i];
+        pair.layer.setStyle(styleFeature(pair.feature));
+      }
+    }
+
+    // ---- UI Controls Initialization ----
+
+    $("#prev")
+      .button({
+        text: false,
+        icons: {
+          primary: "ui-icon-seek-prev"
+        }
+      })
+      .click(function (e) {
+        incrementTimeStep(-1);
+      });
+
+    $("#next")
+      .button({
+        text: false,
+        icons: {
+          primary: "ui-icon-seek-next"
+        }
+      })
+      .click(function (e) {
+        incrementTimeStep(1);
+      });
+
+    $("#play")
+      .button({
+        text: false,
+        icons: {
+          primary: "ui-icon-play"
+        }
+      })
+      .click(function (e) {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+          $("#play").button("option", "icons", {"primary": "ui-icon-play"});
+        } else {
+          timer = setInterval(function () { incrementTimeStep(1); }, 1000);
+          $("#play").button("option", "icons", {"primary": "ui-icon-pause"});
+        }
+      });
+
+    // ---- Map Initialization ----
+
+    $.get("data.json", function (townships) {
+      var map = L.mapbox.map("map", "ryanmullins.map-lsn1bktr", {
+        "center" : L.latLng(40.791389, -77.858611),
+        "zoom" : 11
+      });
+
+      map.addLayer(L.geoJson(townships, {
+        "style" : styleFeature,
+        "onEachFeature" : function (feature, layer) {
+          featureLayerPairs.push({"feature" : feature, "layer" : layer});
+        }
+      }));
+    });
+  </script>
+</body>
+</html>
