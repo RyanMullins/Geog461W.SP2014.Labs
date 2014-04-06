@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Geog 461W | Loading Lots of Data  Demo</title>
+
+  <!-- MapBox.js and Leaflet -->
+
+  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+  <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+
+  <!-- D3 Libraries -->
+
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/queue.v1.min.js"></script>
+  <script src="d3.pcpGeoJson.min.js"></script>
+  <link href='d3.pcpGeoJson.css' rel='stylesheet' />
+
+  <!-- Custom Styles -->
+
+  <style type="text/css">
+    .countyIcon {
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    #map {
+      width: 960px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script type="text/javascript">
+
+    // ---- Variables for Data ----
+
+    var map = null,
+        fmapCenters = [],
+        fmapPolys = [];
+
+    // ---- Initializing the map
+
+    map = L.mapbox.map("map", "ryanmullins.map-lsn1bktr", {
+      'center' : L.latLng(40.791389, -77.858611),
+      'zoom' : 11
+    });
+
+    map.on('ready', function () {
+      loadDataLayers();
+    })
+
+    // ---- Loading Multiple Data Layers ----
+
+    function loadDataLayers () {
+      queue()
+        .defer(loadDataLayer, 'centers.json')
+        .defer(loadDataLayer, 'polys.json')
+        .await(function (errror, centers, polys) { 
+
+          // ---- Adding Layers to the Map ----
+          map
+            .addLayer(L.geoJson(centers, {
+              'onEachFeature' : function (feature, layer) {
+                if (layer instanceof L.Marker) {
+                  layer.setIcon(L.divIcon({
+                    'className' : 'countyIcon',
+                    'html' : feature.properties.MUNICIPAL1,
+                    'iconSize' : [32,32]
+                  }));
+                }
+
+                fmapCenters.push({'feature':feature, 'layer':layer});
+              }
+            }))
+            .addLayer(L.geoJson(polys, {
+              'style' : stylePolys,
+              'onEachFeature' : function (feature, layer) {
+                fmapPolys.push({'feature':feature, 'layer':layer});
+              }
+            }));
+
+          // ---- Making a Parallel Coordinate Plot from th Centers Layer ----
+
+          d3.pcpGeoJson(centers);
+        });
+    }
+
+    function loadDataLayer (url, callback) {
+      d3.json(url, function (error, data) {
+        if (error) console.warn(error);
+        callback(null, data);
+      });
+    }
+
+    // ---- Styling Features on the Map ----
+
+    function stylePolys (feature) {
+
+      var style = {
+        "color" : "#fff",
+        "opacity" : 1,
+        "fillColor" : "",
+        "fillOpacity" : 1,
+      };
+
+      if (feature.properties.Population[0] > 15000) {
+        style.fillColor = "#3182bd";
+      } else if (feature.properties.Population[0] > 7500) {
+        style.fillColor = "#9ecae1";
+      } else {
+        style.fillColor = "#deebf7";
+      }
+
+      return style;
+    }
+
+  </script>
+</body>
+</html>

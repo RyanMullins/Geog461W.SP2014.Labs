@@ -1,0 +1,36 @@
+{
+    "type": "FeatureCollection",
+    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },                                                                        
+    "features": [
+        { 
+            "type": "Feature", 
+            "properties": { "MSLINK": 1595, "COUNTY": "14", "MUNICIPAL_": "209", "MUNICIPAL1": "HALFMOON", "FIPS_MUN_C": "31992", "FED_AID_UR": "1", "FIPS_COUNT": "027", "FIPS_AREA_": "00000", "FIPS_NAME": null, "FIPS_SQ_MI": 22.1, "FIPS_MUN_P": 2667, "FED_ID_NUM": "25-1391012", "CLASS_OF_M": "2TWP", "Population": "(2:2356,2667)" }, 
+            "geometry": { "type": "Point", "coordinates": [ -78.023846347647449, 40.773132299444192 ] } 
+        },
+        { 
+            "type": "Feature", 
+            "properties": { "MSLINK": 1602, "COUNTY": "14", "MUNICIPAL_": "216", "MUNICIPAL1": "PATTON", "FIPS_MUN_C": "58440", "FED_AID_UR": "1", "FIPS_COUNT": "027", "FIPS_AREA_": "00000", "FIPS_NAME": null, "FIPS_SQ_MI": 20.3, "FIPS_MUN_P": 15311, "FED_ID_NUM": "25-1154733", "CLASS_OF_M": "2TWP", "Population": "(2:11418,15311)" }, 
+            "geometry": { "type": "Point", "coordinates": [ -77.92265091878491, 40.826084119206747 ] } 
+        },
+        { 
+            "type": "Feature", 
+            "properties": { "MSLINK": 1596, "COUNTY": "14", "MUNICIPAL_": "210", "MUNICIPAL1": "HARRIS", "FIPS_MUN_C": "32792", "FED_AID_UR": "1", "FIPS_COUNT": "027", "FIPS_AREA_": "00000", "FIPS_NAME": null, "FIPS_SQ_MI": 30.0, "FIPS_MUN_P": 4873, "FED_ID_NUM": "25-1145801", "CLASS_OF_M": "2TWP", "Population": "(2:4659,4873)" }, 
+            "geometry": { "type": "Point", "coordinates": [ -77.766700389063189, 40.762474622982104 ] } 
+        },
+        { 
+            "type": "Feature", 
+            "properties": { "MSLINK": 1592, "COUNTY": "14", "MUNICIPAL_": "206", "MUNICIPAL1": "FERGUSON", "FIPS_MUN_C": "25624", "FED_AID_UR": "1", "FIPS_COUNT": "027", "FIPS_AREA_": "00000", "FIPS_NAME": null, "FIPS_SQ_MI": 44.7, "FIPS_MUN_P": 17690, "FED_ID_NUM": "23-1197270", "CLASS_OF_M": "2TWP", "Population": "(2:14062,17690)" }, 
+            "geometry": { "type": "Point", "coordinates": [ -77.94031298706372, 40.743018491033816 ] } 
+        },
+        { 
+            "type": "Feature", 
+            "properties": { "MSLINK": 1535, "COUNTY": "14", "MUNICIPAL_": "410", "MUNICIPAL1": "STATE COLLEGE", "FIPS_MUN_C": "73808", "FED_AID_UR": "3", "FIPS_COUNT": "027", "FIPS_AREA_": "00353", "FIPS_NAME": "STATE COLLEGE", "FIPS_SQ_MI": 3.0, "FIPS_MUN_P": 42034, "FED_ID_NUM": "24-6000660", "CLASS_OF_M": "BORO", "Population": "(2:38420,42034)" }, 
+            "geometry": { "type": "Point", "coordinates": [ -77.85679218700264, 40.79105263005377 ] } 
+        },
+        { 
+            "type": "Feature", 
+            "properties": { "MSLINK": 2703, "COUNTY": "14", "MUNICIPAL_": "204", "MUNICIPAL1": "COLLEGE", "FIPS_MUN_C": "15136", "FED_AID_UR": "3", "FIPS_COUNT": "027", "FIPS_AREA_": "00353", "FIPS_NAME": "STATE COLLEGE", "FIPS_SQ_MI": 11.0, "FIPS_MUN_P": 9521, "FED_ID_NUM": "24-6002553", "CLASS_OF_M": "2TWP", "Population": "(2:8486,9521)" }, 
+            "geometry": { "type": "Point", "coordinates": [ -77.817262554229657, 40.814190454833387 ] } 
+        }
+    ]
+}
