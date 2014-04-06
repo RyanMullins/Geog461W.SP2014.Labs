@@ -57,9 +57,10 @@
       queue()
         .defer(loadDataLayer, 'centers.json')
         .defer(loadDataLayer, 'polys.json')
-        .await(function (errror, centers, polys) { 
+        .await(function (error, centers, polys) { 
 
           // ---- Adding Layers to the Map ----
+
           map
             .addLayer(L.geoJson(centers, {
               'onEachFeature' : function (feature, layer) {
@@ -81,7 +82,7 @@
               }
             }));
 
-          // ---- Making a Parallel Coordinate Plot from th Centers Layer ----
+          // ---- Making a Parallel Coordinate Plot from the Centers Layer ----
 
           d3.pcpGeoJson(centers);
         });
@@ -89,8 +90,7 @@
 
     function loadDataLayer (url, callback) {
       d3.json(url, function (error, data) {
-        if (error) console.warn(error);
-        callback(null, data);
+        callback(error, data);
       });
     }
 
