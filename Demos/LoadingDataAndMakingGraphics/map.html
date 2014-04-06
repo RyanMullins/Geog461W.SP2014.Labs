@@ -54,7 +54,7 @@
     // ---- Loading Multiple Data Layers ----
 
     function loadDataLayers () {
-      queue()
+      queue(2)
         .defer(loadDataLayer, 'centers.json')
         .defer(loadDataLayer, 'polys.json')
         .await(function (error, centers, polys) { 
