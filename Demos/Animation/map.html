@@ -104,6 +104,10 @@
         }
       })
       .click(function (e) {
+        if (timer) {
+          stopAnimation();
+        }
+        
         incrementTimeStep(-1);
       });
 
@@ -115,6 +119,10 @@
         }
       })
       .click(function (e) {
+        if (timer) {
+          stopAnimation();
+        }
+
         incrementTimeStep(1);
       });
 
@@ -127,14 +135,18 @@
       })
       .click(function (e) {
         if (timer) {
-          clearInterval(timer);
-          timer = null;
-          $("#play").button("option", "icons", {"primary": "ui-icon-play"});
+          stopAnimation();
         } else {
           timer = setInterval(function () { incrementTimeStep(1); }, 1000);
           $("#play").button("option", "icons", {"primary": "ui-icon-pause"});
         }
       });
+
+    function stopAnimation() {
+      clearInterval(timer);
+      timer = null;
+      $("#play").button("option", "icons", {"primary": "ui-icon-play"});
+    }
 
     // ---- Map Initialization ----
 
