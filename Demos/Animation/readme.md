@@ -18,7 +18,7 @@ A counter is a variable, typically a Number, used to track progress through an a
 
 An updater is a function. While this is not a requirement, I like to define an updater function to take in a single parameter, _increment_, that tells it how far forward or backward to jump through the animation. Inside the function, the first thing you do is increment the counter. Then you update the different UI components to show the data for that step in the animation. 
 
-A timer is another variable, created by making a call to the [settimeout()][timeout] function. The setTimeout() function has two parameters, _function_ and _duration_. The _duration_ parameter allows you to define the frequency that the timer will go off in milliseconds. The _function_ parameter is a reference to the function that should be called every time the timer goes off. The function returns a unique identifier (UID), a Number, for the timer you just created. You should always store the UID for a timer in a variable, otherwise there will be no way to turn it off. Below is a complete example of how to initialize a timer that goes off every half-second and increments updates the UI by one step. 
+A timer is another variable, created by making a call to the [setTimeout()][timeout] function. The setTimeout() function has two parameters, _function_ and _duration_. The _duration_ parameter allows you to define the frequency that the timer will go off in milliseconds. The _function_ parameter is a reference to the function that should be called every time the timer goes off. The function returns a unique identifier (UID), a Number, for the timer you just created. You should always store the UID for a timer in a variable, otherwise there will be no way to turn it off. Below is a complete example of how to initialize a timer that goes off every half-second and increments updates the UI by one step. 
 
 ```JavaScript
 
@@ -164,7 +164,7 @@ $("#play")
 
 ```
 
-One thing I have not covered is how to handling looping in your animation. This is a slightly difficult task, as it depends greatly on the data you use in you app. Generally, the easiest way to handle this is to create another variable, _maxCounter_, and set that variables value to the highest allowable time step for the counter. Then you change the code in the **updateUI**() function to account for the looping conditions. A simple example: 
+One thing I have not covered is how to handling looping in your animation. This is a slightly difficult task, as it depends greatly on the data you use in you app. Generally, the easiest way to handle this is to create another variable, _maxCounter_, and set that variable's value to the highest allowable time step for the counter. Then you change the code in the **updateUI**() function to account for the looping conditions. A simple example: 
 
 ```JavaScript
 
