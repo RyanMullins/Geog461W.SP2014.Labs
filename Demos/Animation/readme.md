@@ -83,6 +83,7 @@ function stopAnimation () {
     $("#play").button("option", "icons", {"primary": "ui-icon-play"});
 }
 
+```
 
 Second, is the function to simply step the animation in a direction. This is the function you will use for the previous and next buttons. The function first checks to see if the timer is going, and if it is, stops it. Then it increments the counter using the **updateUI**() function. The example below shows the code for the previous button. 
 
