@@ -39,3 +39,17 @@ Lab 3 builds on the map made in Lab 2, exploring another aspect of dynamic repre
 1. The fundamentals of adding interactivity to a web map &mdash; how interactivity can be used to gain more information about the data, or to filter the data being displayed on the map;
 2. Creating interactive map symbols that offer greater details about the features;
 3. Creating interactive UI elements to control data filters.
+
+
+
+# Demos
+
+As the semester progresses we move away from lab an toward the final projects. Unfortunately it's quite hard to cover all of the material you need to know to finish a final project during the course of the labs. So, there are three demos given in lab after the semester is over to help fill the gaps. These demos are much shorter, and focus on one or two specific components of an application. 
+
+## Animation 
+
+The basics of implementing animation in JavaScript, including timers, controls, and logic.
+
+## Multiple Data Layers and Parallel Coordinate Plots
+
+Handling and loading multiple datasets from different files using the Queue.js library. Creating a Parallel Coordinate Plot from a GeoJSON Feature Collection using the pcpGeoJson plug-in for D3.
